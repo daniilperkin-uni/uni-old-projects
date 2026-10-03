@@ -1,0 +1,24 @@
+/* PE2 Todo App - section styles */
+#pe2_todo_app .p-owner{color:var(--accent-2);font-size:13px;margin:0 0 2px;font-weight:600;letter-spacing:.04em}
+/* classifier widget */
+.cls{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
+.cls input{width:100%;box-sizing:border-box;background:var(--surface2);border:1px solid var(--border);border-radius:10px;color:var(--text);font:inherit;font-size:15px;padding:10px 12px}
+.cls input:focus{outline:none;border-color:var(--accent)}
+.cls-examples{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.cls-examples button{background:var(--surface2);border:1px solid var(--border);color:var(--muted);border-radius:999px;padding:4px 10px;font:inherit;font-size:12.5px;cursor:pointer}
+.cls-examples button:hover{color:var(--text);border-color:var(--accent)}
+.cls-out{margin-top:14px}
+.cls-verdict{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.cls-pill{font-weight:700;font-size:14px;border-radius:999px;padding:4px 14px}
+.cls-work{background:color-mix(in srgb,var(--ok) 15%,transparent);color:var(--ok);border:1px solid color-mix(in srgb,var(--ok) 45%,transparent)}
+.cls-private{background:color-mix(in srgb,var(--warn) 12%,transparent);color:var(--warn);border:1px solid color-mix(in srgb,var(--warn) 45%,transparent)}
+.cls-score{font-family:var(--mono);font-size:13.5px;color:var(--text)}
+.cls-prob{font-size:13px;color:var(--muted)}
+.cls-tokens{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.cls-tok{font-family:var(--mono);font-size:12.5px;border-radius:8px;padding:4px 9px;border:1px solid var(--border);background:var(--surface2);color:var(--muted)}
+.cls-tok.pos{color:var(--ok)}
+.cls-tok.neg{color:var(--warn)}
+.cls-tok b{font-weight:600;color:var(--text)}
+.cls-explain{color:var(--muted);font-size:13px;margin:10px 0 0}
+.cls-divergence{margin:10px 0 0;color:var(--muted);font-size:13px;border-left:3px solid var(--accent);padding-left:10px}
+.cls-divergence b{color:var(--text)}

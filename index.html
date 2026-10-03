@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Uni old projects — Daniil Perkin</title>
+<link rel="icon" href="data:,">
+<script>(function(){try{var t=localStorage.getItem('uop-theme');if(t==='light'||t==='dark'){document.documentElement.dataset.theme=t}else if(window.matchMedia('(prefers-color-scheme: light)').matches){document.documentElement.dataset.theme='light'}}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="sections/sopra_office_dashboard/style.css">
+<link rel="stylesheet" href="sections/pe2_todo_app/style.css">
+<link rel="stylesheet" href="sections/pe2_library_cli/style.css">
+<link rel="stylesheet" href="sections/pe1_selection_wheel/style.css">
+<link rel="stylesheet" href="sections/oop_student_organizer/style.css">
+<link rel="stylesheet" href="sections/computergrafik_aufgaben/style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">Daniil Perkin · Uni old projects</p>
+    <h1>Six university projects, one interactive site.</h1>
+    <p class="lede">A tour through my CS coursework — real captures of the running apps, demos ported from the actual source code, and the story behind each build. Every section is contributed by that project's own build agent.</p>
+  </div>
+</header>
+<nav class="topnav"><div class="wrap" id="topnav">
+<a href="#sopra_office_dashboard">SoPra Office Dashboard</a>
+<a href="#pe2_todo_app">PE2 Todo App</a>
+<a href="#pe2_library_cli">PE2 Library CLI</a>
+<a href="#pe1_selection_wheel">PE1 Selection Wheel</a>
+<a href="#oop_student_organizer">EInf Student Organizer</a>
+<a href="#computergrafik_aufgaben">Computergrafik</a>
+<button id="theme-toggle" type="button">Light theme</button>
+</div></nav>
+<main class="wrap">
+<section class="project" id="sopra_office_dashboard">
+  <header class="p-head">
+    <p class="p-owner">@sopra · section live</p>
+    <h2>SoPra Office Dashboard</h2>
+    <p class="p-lede">A kiosk dashboard for the office — one full-screen 4K display rotating through calendar, parking, highscore, a combined overview and live weather, with an admin area behind it and a FallingCats easter egg on the side. Built as a university team project (Software-Praktikum): Spring Boot 4.1 multi-module backend, Vue 3 kiosk UI, MariaDB, Docker Compose.</p>
+    <p class="chips"><span class="chip">Java 21</span><span class="chip">Spring Boot 4.1.1</span><span class="chip">Gradle 9 · 7 modules</span><span class="chip">MariaDB · Liquibase</span><span class="chip">Vue 3.5 · Vite 7 · Pinia · Tailwind</span><span class="chip">Odoo XML-RPC · Open-Meteo · Mattermost</span><span class="chip">Docker Compose</span></p>
+  </header>
+
+  <h3>The kiosk — interactive replay</h3>
+  <div class="mount" id="kiosk-mount"></div>
+  <p class="caption">Every frame is a real capture from the running stack at <b>3840×2160</b> — the kiosk renders one fixed 4K canvas and a Smart Scaler transforms it to fit whatever screen it runs on, so this is the layout as designed. The live display rotates on a configurable interval (15 s default), cuts between views with no crossfade and re-reads its config every 30 s — this replay does the same, just faster. Switch to <b>Admin</b> for the screens behind the glass; click the stage to zoom a frame.</p>
+
+  <div class="kpis">
+    <div class="kpi"><b>93</b><span>backend tests green — JUnit 5 on H2</span></div>
+    <div class="kpi"><b>63</b><span>frontend tests green — Vitest, 10 files</span></div>
+    <div class="kpi"><b>7</b><span>Gradle modules behind one boot jar</span></div>
+    <div class="kpi"><b>3840×2160</b><span>one fixed 4K canvas, scaled to any screen</span></div>
+  </div>
+
+  <h3>The five views — and the office cats</h3>
+  <div class="strip">
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/display-calendar.png" alt="Kalender — three-week grid with birthday, anniversary and lunch chips" loading="lazy"><figcaption><b>Kalender</b> — a three-week grid fed from Odoo over XML-RPC: employee birthdays, work anniversaries, probation ends and community-lunch chips (fictional demo names).</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/display-parking.png" alt="Parking — occupancy per working day" loading="lazy"><figcaption><b>Parking</b> — the coming working days with occupancy bars (0/5 … 5/5), green to red as the office fills up; bookings are managed in the admin area.</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/display-highscore.png" alt="Highscore — darts and kicker leaderboards" loading="lazy"><figcaption><b>Highscore</b> — darts leaderboard (ELO-ranked) and kicker standings, with the latest match history beside them.</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/display-dashboard.png" alt="OneDisplay — calendar, parking and ranks combined" loading="lazy"><figcaption><b>OneDisplay</b> — the combined view: calendar, parking and top ranks on one screen (it can be skipped in the rotation).</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/display-weather.png" alt="Wetter — live Open-Meteo data" loading="lazy"><figcaption><b>Wetter</b> — live from Open-Meteo, no API key. Captured as-is: this view currently renders white text on a light card — a known contrast bug that sits on the repo's backlog.</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/display-game.jpg" alt="Game mode — falling cats, flappy cat, video wall" loading="lazy"><figcaption><b>Easter egg</b> — game mode: office cats rain down, a flappy cat dodges pipes and a Subway Surfers video runs alongside; a rotation interval of -1 boots straight into it.</figcaption></figure>
+  </div>
+
+  <h3>Behind the glass: the admin area</h3>
+  <p>Everything the kiosk shows is managed in a responsive Vue admin (<code>/admin/*</code>) — from a desktop or a phone, through the same REST API the display uses. The whole area sits behind a session login.</p>
+  <div class="strip">
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/admin-login.png" alt="Admin login" loading="lazy"><figcaption><b>Login</b> — everything under <code>/admin</code> requires a session.</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/admin-parking.png" alt="Parking admin — booking list" loading="lazy"><figcaption><b>Parken</b> — bookings per day with filters; create, edit and delete the reservations the kiosk shows.</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/admin-highscores.png" alt="Highscore admin — match management" loading="lazy"><figcaption><b>Highscores</b> — record and correct darts and kicker matches; standings and ELO recompute from these rows.</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/admin-lunch.png" alt="Lunch admin — events, options and votes" loading="lazy"><figcaption><b>Lunch</b> — community-lunch events with food catalog, options, votes and results; the DRAFT → OPEN → CLOSED lifecycle gates when voting runs.</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/admin-config.png" alt="Konfiguration — display and rotation settings" loading="lazy"><figcaption><b>Konfiguration</b> — rotation on/off, interval (minimum 5 s), skip OneDisplay and the view to pin when rotation is off — the display re-reads this every 30 s, no reload needed.</figcaption></figure>
+  </div>
+  <h3>Under the hood: seven modules, one app</h3>
+  <div class="grid-2">
+    <div class="card code"><pre>backend/ — Gradle 9 · Java 21 · Spring Boot 4.1.1
+common/                   Mattermost client + shared plumbing
+module-events/            Odoo XML-RPC → birthdays, anniversaries, probation
+module-parking/           reservations + daily occupancy
+module-highscore/         darts ELO + kicker standings
+module-community-lunches/ events, options, votes, food catalog
+module-config/            display + rotation settings
+backend/                  runnable app · session security · Liquibase master</pre></div>
+    <div class="card code"><pre>frontend/ — Vue 3.5 · Vite 7 · Pinia · Tailwind
+features/    calendar · parking · highscore · community-lunch · dashboard · game
+views/       DisplayView (the kiosk) · admin screens
+composables/ useDisplayScaler · useViewRotation</pre></div>
+  </div>
+  <p>One runnable jar, clean seams: every feature module owns its controllers, services, entities and changelog, and the schema is fully managed by Liquibase (<code>ddl-auto=validate</code>) — adding a module means registering it in <code>settings.gradle</code>, <code>build.gradle</code> and the master changelog, and applied changesets are never edited. Background work stays quiet: the events module caches Odoo and refreshes daily, and a 12:00 cron pushes upcoming birthdays, anniversaries and new lunch events into the team's Mattermost.</p>
+
+  <h3>Tests &amp; CI</h3>
+  <p>Every push runs the full pipeline: backend <code>./gradlew build</code> (compile · Checkstyle · 93 tests · boot jar) and frontend lint, format check, 63 Vitest tests and the production build on Node 22. The backend suite spans all seven modules — 91 run, the two <code>@Disabled</code> ones are the live-Odoo integration tests, kept runnable locally.</p>
+  <div class="grid-2">
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/ci-actions.png" alt="GitHub Actions — workflow runs on master, all green"><figcaption>CI on <code>master</code> — the newest runs on the CI page, all green; one workflow covers backend and frontend.</figcaption></figure>
+    <div class="card code"><pre>$ ./gradlew build      # backend — compile · Checkstyle · tests · boot jar
+$ npm run lint &amp;&amp; npm run format:check
+$ npm run test &amp;&amp; npm run build
+$ docker compose up -d --build
+  # MariaDB + API + kiosk in one command</pre></div>
+  </div>
+
+  <p class="muted">Source: <a href="https://github.com/daniilperkin-uni/sopra_office_dashboard">github.com/daniilperkin-uni/sopra_office_dashboard</a> (public). Captures are from the running Docker stack with fictional demo data — no real employee data.</p>
+</section>
+<section class="project" id="pe2_todo_app">
+  <header class="p-head">
+    <p class="p-owner">@pe2-todo-app · section live</p>
+    <h2>PE2 Todo App</h2>
+    <p class="p-lede">A full-stack Todo web app: a Vue 3 + TypeScript SPA on a Spring Boot 4.1 REST API with MariaDB in Docker — and a trained ML classifier that sorts every todo title into <b>work</b> or <b>private</b> as it is saved.</p>
+    <p class="chips"><span class="chip">Vue 3.5</span><span class="chip">TypeScript 5.9</span><span class="chip">Vite 7</span><span class="chip">Spring Boot 4.1.1</span><span class="chip">Java 21</span><span class="chip">MariaDB 11.8</span><span class="chip">Docker Compose</span><span class="chip">JPMML · PMML classifier</span></p>
+  </header>
+
+  <h3>The classifier — running in your browser</h3>
+  <div class="mount" id="cls-mount"></div>
+  <p class="caption">The backend loads <code>model.pmml</code> (a 38-token TF-IDF linear model, logit-normalized) through JPMML and classifies each todo on create and update — the statistics view splits by the resulting category. This widget runs the same model's arithmetic in JS, ported token-by-token from the PMML: tokenize → idf × coefficient per matched token → signed score → class. Try the chips, or type a title like <code>team car</code> and watch which side of the line it lands on.</p>
+
+  <div class="kpis">
+    <div class="kpi"><b>73</b><span>backend tests green — surefire, 8 suites on H2</span></div>
+    <div class="kpi"><b>28</b><span>frontend tests green — Vitest, 5 files</span></div>
+    <div class="kpi"><b>92%</b><span>instruction coverage (JaCoCo gate ≥ 80%)</span></div>
+    <div class="kpi"><b>38</b><span>token weights in the ported model</span></div>
+  </div>
+
+  <h3>Screens from the running app</h3>
+  <p>Real captures of the Docker Compose stack (MariaDB + API + nginx) at 1600×1000 @2×, with demo content seeded through the REST API — fictional names only.</p>
+  <div class="grid-2">
+    <figure class="shot">
+      <img src="sections/pe2_todo_app/assets/01-todos-light.png" alt="Todos list view, light theme">
+      <figcaption>Todos (light) — the list view: priority, due date, assignees and finished state per row; the weekly recurrence chain shows its next occurrence.</figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="sections/pe2_todo_app/assets/02-todos-dark.png" alt="Todos list view, dark theme">
+      <figcaption>The same list in dark theme — both palettes come from shared design tokens, toggled in the header.</figcaption>
+    </figure>
+  </div>
+  <div class="grid-2">
+    <figure class="shot">
+      <img src="sections/pe2_todo_app/assets/04-board-light.png" alt="Kanban board, light theme">
+      <figcaption>Kanban board (light) — OPEN / IN_PROGRESS / DONE, with the finished flag kept in sync on every move and finishing spawning the next recurrence.</figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="sections/pe2_todo_app/assets/03-board-dark.png" alt="Kanban board, dark theme">
+      <figcaption>The board in dark theme.</figcaption>
+    </figure>
+  </div>
+  <div class="grid-2">
+    <figure class="shot">
+      <img src="sections/pe2_todo_app/assets/05-stats-light.png" alt="Statistics dashboard">
+      <figcaption>Statistics — completion rate, average days to finish, per-priority / per-category / per-assignee counts, and the classifier feedback panel that records corrections for retraining (the demo set splits 8 private / 5 work).</figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="sections/pe2_todo_app/assets/06-assignees-light.png" alt="Assignees overview">
+      <figcaption>Assignees — CRUD with uni-stuttgart.de email validation (stud. / iste. / ipvs. / sec.) enforced server-side.</figcaption>
+    </figure>
+  </div>
+
+  <h3>What it does</h3>
+  <ul>
+    <li><b>Todos CRUD + assignment</b> — description, LOW/MEDIUM/HIGH priority, assignees resolved server-side; validation failures come back as RFC 7807 ProblemDetail.</li>
+    <li><b>Kanban board in sync with the finished flag</b> — finishing from the list or dragging a card to DONE keeps status and flag consistent; both write paths are pinned by tests.</li>
+    <li><b>Recurring todos</b> — WEEKLY/MONTHLY with month-end clamping; finishing spawns exactly one successor, and a repeated DONE move never duplicates it.</li>
+    <li><b>Overdue-friendly due dates</b> — a new due date must be in the future, but an already-overdue todo stays editable and finishable.</li>
+    <li><b>ML category + feedback loop</b> — every title is classified; recorded priority corrections are training data for a future retrain of the model.</li>
+    <li><b>Stats &amp; exports</b> — completion rate, average days to finish, per-priority/category/assignee breakdowns, and CSV downloads.</li>
+  </ul>
+
+  <h3>Architecture</h3>
+  <div class="grid-2">
+    <div class="card code"><pre>api/ — Spring Boot 4.1.1 · Java 21
+├─ TodoController · AssigneeController
+├─ CsvDownloadController · PriorityCorrectionController
+├─ TodoService  (@Transactional business logic)
+│    └─ classifier.classify(title) → JPMML model.pmml
+├─ Repository (Spring Data JPA) → MariaDB (H2 in tests)
+└─ GlobalExceptionHandler → RFC 7807 ProblemDetail</pre></div>
+    <div class="card code"><pre>frontend/ — Vue 3.5 · TS 5.9 · Vite 7
+├─ views/       Todos · Board · Stats · Assignees
+├─ components/  TodoList · TodoForm · AssigneeList …
+├─ services/apiService.ts   (single API layer)
+├─ router/      hash-based
+└─ assets/base.css   design tokens + light/dark themes</pre></div>
+  </div>
+
+  <p class="muted">Docker Compose brings up MariaDB + API + nginx with one command. Source: <a href="https://github.com/daniilperkin-uni/pe2_todo_app">github.com/daniilperkin-uni/pe2_todo_app</a> (public).</p>
+</section>
+<section class="project" id="pe2_library_cli">
+  <header class="p-head">
+    <p class="p-owner">@pe2-library-cli · section live</p>
+    <h2>PE2 Library CLI</h2>
+    <p class="p-lede">A German-language command-line library manager — rebuilt from a single 985-line file into a five-layer Maven project with a 108-test suite, a coverage gate and CI.</p>
+    <p class="chips"><span class="chip">Java 21</span><span class="chip">Maven</span><span class="chip">JUnit 5 · AssertJ</span><span class="chip">jacoco</span><span class="chip">GitHub Actions</span><span class="chip">terminal UI</span></p>
+  </header>
+
+  <script defer src="sections/pe2_library_cli/sessions.js"></script>
+  <div class="mount" id="term-mount"></div>
+  <p class="caption">Interactive replay of a real session recorded on this machine — output captured verbatim from the app: a loan, the double-loan guard, then a late return with the overdue fee. The second tab replays the ISBN reservation queue (Vormerkungen) with FIFO order and cancellation.</p>
+
+  <div class="kpis">
+    <div class="kpi"><b>108</b><span>tests green in <code>verify</code></span></div>
+    <div class="kpi"><b>80.75%</b><span>instruction coverage (jacoco gate)</span></div>
+    <div class="kpi"><b>985 → 13</b><span>files across 5 layers</span></div>
+    <div class="kpi"><b>6+</b><span>audited bugs fixed under test</span></div>
+  </div>
+  <div class="grid-2">
+    <figure class="shot">
+      <img src="sections/pe2_library_cli/assets/actions.png" alt="GitHub Actions — the verify workflow green on master">
+      <figcaption>CI on every push to <code>master</code>: <code>./mvnw -B verify</code> on JDK 21 — build, all 108 tests, coverage gate. The three latest runs, all green.</figcaption>
+    </figure>
+    <div class="card code">
+      <h3>The same command, locally</h3>
+      <pre>[INFO] Tests run: 108, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+[INFO] Total time:  4.831 s</pre>
+      <p class="muted">Verbatim output of <code>-B clean verify</code> on this machine — warm-cache fast, jacoco gate included. Reproduce: <code>./mvnw -B verify</code>.</p>
+    </div>
+  </div>
+
+  <h3>The refactor: one monolith → five layers</h3>
+  <div class="grid-2">
+    <div class="card code"><pre>LibraryCLI.java — 985 lines
+├─ menu + I/O
+├─ loan / return / fine math
+├─ CSV parsing via String.split(",")
+└─ reports</pre></div>
+    <div class="card code"><pre>cli/      menu + Scanner I/O (the only I/O layer)
+csv/      RFC-4180-subset parser · save on exit
+manager/  CRUD per entity + reservations
+service/  LoanService · ReportService (pure)
+model/    Book · BookCopy · Customer · Reservation</pre></div>
+  </div>
+  <p>Services never print — they throw typed exceptions and the CLI catches and renders them. The audited bugs from the original code are each pinned by a test: the loan guard order, return authorization, the naive CSV split, uncaught <code>InputMismatchException</code>, hardcoded fixture paths, plus deletion and startup guards.</p>
+
+  <h3>What it does</h3>
+  <ul>
+    <li><b>Nine-option German menu</b> — Bücher, Buchkopien, Kunden, Ausleihe, Rückgabe, Suche, Vormerkungen, Berichte, Beenden.</li>
+    <li><b>Loans on a real clock</b> — 21-day loan period, then 0.50 € per overdue day, itemized on return.</li>
+    <li><b>FIFO reservations per ISBN</b> — queue view and cancellation; the waiting list matters as soon as every copy of a title is out.</li>
+    <li><b>State that survives restarts</b> — saved on clean exit, reloaded on next start; quoted CSV fields and umlauts handled; corrupt saved data refuses to load instead of crashing.</li>
+  </ul>
+  <p class="muted">Source: <a href="https://github.com/daniilperkin-uni/pe2_library_cli">github.com/daniilperkin-uni/pe2_library_cli</a> (public).</p>
+</section>
+<section class="project" id="pe1_selection_wheel">
+  <header class="p-head">
+    <p class="p-owner">@pe1-selection-wheel · section live</p>
+    <h2>PE1 Selection Wheel</h2>
+    <p class="p-lede">A Swing wheel-of-fortune selector where the spin is real physics: drags and random spins decelerate at a constant &minus;20&nbsp;&deg;/s&sup2; and land under the pointer on whichever animal the math picks. The wheel below is the app itself, ported &mdash; the deceleration, the section index and the stop conditions come straight from the project's pure Java classes.</p>
+    <p class="chips"><span class="chip">Java 21</span><span class="chip">Swing / AWT</span><span class="chip">Maven</span><span class="chip">JUnit 5 · AssertJ</span><span class="chip">JaCoCo</span><span class="chip">GitHub Actions · xvfb</span><span class="chip">EDT-safe</span></p>
+  </header>
+
+  <div class="mount" id="wheel-mount"></div>
+  <p class="caption"><b>Live</b> &mdash; drag the wheel and release to flick it, click it mid-spin to stop it dead, press <b>Space</b>/<b>Enter</b> (or the button) for a random spin at 180&ndash;360&nbsp;&deg;/s. The animation advances in the app's own 10&nbsp;ms steps of <code>SpinStep.compute</code>, and the selection under the pointer is the same <code>floor(n + angle % 360 / 24&deg;) % n</code>. Spin speed and direction, deceleration and landing are validated 1:1 against the Java classes &mdash; 8,892 generated test vectors, zero mismatches.</p>
+
+  <div class="kpis">
+    <div class="kpi"><b>106</b><span>tests green in <code>verify</code> — JUnit 5 + AssertJ, 0 failures</span></div>
+    <div class="kpi"><b>97–100%</b><span>instruction coverage of the pure layers (WheelMath · SpinStep · TickMath · WheelModel)</span></div>
+    <div class="kpi"><b>0</b><span>mismatches against the Java classes across 8,892 ported-math test vectors</span></div>
+    <div class="kpi"><b>10 ms</b><span>per physics step — the app's 100&nbsp;Hz timer, replayed exactly</span></div>
+  </div>
+
+  <h3>Screens from the running app</h3>
+  <p>Captured from the real app on this machine (<code>java -cp target/classes selectionwheel.MainWheel</code>): at rest, mid-spin at two speeds, after coming to rest, and the runtime file-loading dialog.</p>
+  <div class="grid-2">
+    <figure class="shot">
+      <img src="sections/pe1_selection_wheel/assets/app-idle.png" alt="Selection Wheel app at rest: the wheel with black borders, the Info panel and the Spin / Load list buttons">
+      <figcaption>At rest — 15 sections from the bundled <code>itemlist.txt</code>, borders on, the Info panel showing Selection / Angle / Speed, result bar idling on “Spin the wheel!”.</figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="sections/pe1_selection_wheel/assets/app-result.png" alt="Selection Wheel app just after a spin ended, result bar showing the selection">
+      <figcaption>Landed — this spin came to rest at −165.1° (German number format, as on this machine): <code>floor(15 + (−165.1 % 360) / 24) % 15 = 8</code> → “Rat”, exactly the wedge under the pointer. The inline result bar names it; no modal dialog ever blocks the flow.</figcaption>
+    </figure>
+  </div>
+  <div class="strip">
+    <figure class="shot">
+      <img src="sections/pe1_selection_wheel/assets/app-spin-fast.png" alt="Selection Wheel app early in a spin: button disabled, Spinning… shown">
+      <figcaption>Early in a random spin — the speed readout sits at 268 °/s and is decaying, the Spin button is disabled and the bar reads “Spinning…”.</figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="sections/pe1_selection_wheel/assets/app-spin-slow.png" alt="Selection Wheel app late in a spin: low speed readout">
+      <figcaption>A few seconds into the same spin — down to 197 °/s, with <code>v&sup2; / 2a &asymp; 970&deg;</code> (2.7 more turns) of deceleration still ahead.</figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="sections/pe1_selection_wheel/assets/app-load-dialog.png" alt="JFileChooser dialog for loading a custom item list">
+      <figcaption>“Load list…” — a UTF-8 text file (one item per line, up to 100) replaces the wheel's items at runtime; invalid files are reported and leave the wheel unchanged.</figcaption>
+    </figure>
+  </div>
+
+  <h3>Painting a wheel without a display</h3>
+  <p>The renderer was extracted so it can paint into a <code>BufferedImage</code> with no window involved — the images below come straight from <code>WheelRenderer.render(model, 1200, 1200)</code>. It is deliberately rotation-independent: the model's angle is applied by the component at paint time, so the cached image stays valid while the wheel turns.</p>
+  <div class="strip">
+    <figure class="shot">
+      <img src="sections/pe1_selection_wheel/assets/renderer-circle.png" alt="Wheel rendered at 1200 pixels, circle shape with the default 12-color palette">
+      <figcaption>The default <code>CIRCLE</code> shape, 15 sections — this exact frame also seeds the canvas widget above.</figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="sections/pe1_selection_wheel/assets/renderer-umbrella.png" alt="Wheel rendered at 1200 pixels in the umbrella shape">
+      <figcaption>The same renderer in the library's second shape, <code>UMBRELLA</code> — <code>setShape(Wheel.Shape.UMBRELLA)</code> swaps the fill geometry, everything else is shared.</figcaption>
+    </figure>
+  </div>
+
+  <h3>Architecture: three pure layers around a Swing shell</h3>
+  <div class="grid-2">
+    <div class="card code"><pre>selectionwheel/
+├─ WheelModel   state: items · angle · spin params
+│               — zero Swing imports
+├─ WheelMath    pure fns: section angle · [-360,360)
+│               normalize · selection index · drag delta
+├─ SpinStep     pure record: one 10 ms tick →
+│               (delta°, new speed, stop?)
+├─ TickMath     pure fns: pointer polygon geometry
+├─ Wheel · Tick · SelectionWheel  Swing views
+├─ WheelRenderer  paints into a BufferedImage
+└─ MainWheel    JFrame · keyboard · inline result bar</pre></div>
+    <div class="card code"><pre>// SpinStep.compute — the entire spin physics.
+public static SpinStep compute(double currentSpeed, int direction,
+        double deceleration, double dtSeconds) {
+    double delta = direction * (currentSpeed * dtSeconds);
+    double nextSpeed = currentSpeed + deceleration * dtSeconds;
+    if (nextSpeed &lt;= 0) { return new SpinStep(delta, 0, true); }
+    return new SpinStep(delta, nextSpeed, false);
+}</pre></div>
+  </div>
+  <p>Everything a spin needs is derived from three lines of arithmetic: the landing angle is the sum of the per-tick deltas, the duration is <code>v / 20 s</code>, and the selection is a modulo. That is why the whole physics could be asserted headlessly — and why the widget above can replay it in a browser at a fixed 100&nbsp;Hz, catching up with the wall clock in 10&nbsp;ms steps.</p>
+
+  <h3>Engineered, not just built</h3>
+  <ul>
+    <li><b>The wheel no longer rotates twice on resize</b> — the base image used to bake in the rotation <i>and</i> have it applied again at paint, desyncing pointer and selection; the renderer is now rotation-independent (<code>WheelPaintTest</code>).</li>
+    <li><b>The pointer survives repaints</b> — the tick polygon's scaling used to compound on every paint; geometry now returns a fresh, idempotent polygon (<code>TickMathTest</code>).</li>
+    <li><b>The sidebar keeps its width</b> — selecting a longer item name used to re-lay-out the frame and make the wheel jump (<code>MainWheelInfoPanelTest</code>).</li>
+    <li><b>Font auto-sizing is a binary search</b> — it replaced an O(n) re-rasterize loop and fixed a height-overflow edge on narrow sections.</li>
+    <li><b>No <code>Thread.sleep</code>, anywhere</b> — the spin rides a <code>javax.swing.Timer</code> on the EDT, a detached wheel stops its timer, and the tests synchronize on <code>CountDownLatch</code> callbacks instead of sleeping (<code>SelectionWheelIntegrationTest</code>).</li>
+  </ul>
+
+  <p class="muted">Coverage: pure layers 97–100&nbsp;%, overall 62.6&nbsp;% — the Swing views carry the remaining gap and there is no threshold gate yet. CI: every push runs <code>./mvnw -B verify</code> under xvfb on JDK 21, the Swing tests need a display. Source: <a href="https://github.com/daniilperkin-uni/pe1_selection_wheel">github.com/daniilperkin-uni/pe1_selection_wheel</a> (public).</p>
+</section>
+<section class="project" id="oop_student_organizer">
+  <header class="p-head">
+    <p class="p-owner">@einf-student-organizer · section live</p>
+    <h2>EInf Student Organizer</h2>
+    <p class="p-lede">A JavaFX desktop app for the first semesters: modules with ECTS and status, deadline cards with overdue states, an ECTS-weighted GPA with charts — and a grade simulator that answers "what do I still need for 2,0?". One window, three tabs, CSV persistence, no database.</p>
+    <p class="chips"><span class="chip">Java 21</span><span class="chip">JavaFX 21.0.12</span><span class="chip">JPMS module</span><span class="chip">Maven</span><span class="chip">JUnit 5</span><span class="chip">GitHub Actions</span><span class="chip">CSV persistence</span></p>
+  </header>
+
+  <script defer src="sections/oop_student_organizer/sim.js"></script>
+  <div class="mount" id="oop-sim">
+    <div class="sim">
+      <div class="sim-head">
+        <h3>Notensimulator — live, running the app's real math</h3>
+        <p>The widget starts with the exact demo semester from the screenshots below. Change ECTS or grades, clear a grade to leave a module <em>offen</em>, add or remove modules — every figure recomputes with the same operations, in the same order, as <code>LeistungsRechner.java</code>: the port is validated to the last bit (see the note below the widget).</p>
+      </div>
+      <div class="sim-body">
+        <div class="sim-list">
+          <div class="sim-row sim-row-head"><span>Module</span><span>ECTS</span><span>Leistung</span><span></span></div>
+          <div id="sim-rows"></div>
+          <div class="sim-row-actions">
+            <button type="button" id="sim-add" class="sim-btn">+ Modul hinzufügen</button>
+            <button type="button" id="sim-reset" class="sim-btn sim-btn-ghost">Demo zurücksetzen</button>
+          </div>
+        </div>
+        <div class="sim-side">
+          <label class="sim-wish">Angenommene Note für offene Module — <span id="sim-wish-val">2,0</span>
+            <input type="range" id="sim-wish" min="1" max="4" step="0.1" value="2">
+          </label>
+          <div class="sim-out">
+            <div class="sim-kpi"><b id="sim-gpa">–</b><span>Aktueller Schnitt</span></div>
+            <div class="sim-kpi"><b id="sim-proj">–</b><span>Prognose bei Wunschnote</span></div>
+          </div>
+          <div class="sim-need" id="sim-need"></div>
+          <p class="sim-foot" id="sim-foot"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="caption">Validation of the port (sources in <code>sections/oop_student_organizer/tools/</code>): Java dumps reference values for 307 module-list cases — 300 randomised, six mirroring the app's own <code>NotensimulatorTest</code>, one the demo semester — and Node replays them through the port: <b>3,070 / 3,070 values identical, strict double equality</b>.</p>
+
+  <div class="kpis">
+    <div class="kpi"><b>69</b><span>tests green in <code>./mvnw -B verify</code> (12 test classes)</span></div>
+    <div class="kpi"><b>87.4%</b><span>instruction coverage across the logic classes (the JavaFX layer is excluded)</span></div>
+    <div class="kpi"><b>24</b><span>classes in one JPMS module — no database, CSV + <code>.bak</code> backups</span></div>
+    <div class="kpi"><b>47</b><span>commits from <code>Init</code> to archive</span></div>
+  </div>
+
+  <h3>The Noten tab — where the math lives</h3>
+  <figure class="shot">
+    <img src="sections/oop_student_organizer/assets/noten-tab.png" alt="Noten tab: GPA 2,05, 51/69 ECTS, ECTS progress pie chart, grade bar chart">
+    <figcaption>Noten tab: ECTS-weighted average <b>2,05</b> across the graded modules, <b>51 / 69</b> ECTS passed, the ECTS progress pie (74 %) and the per-module grade chart — all recomputed from the module list on every change. Captured at 2×; click to zoom.</figcaption>
+  </figure>
+
+  <div class="grid-2">
+    <figure class="shot">
+      <img src="sections/oop_student_organizer/assets/module-tab.png" alt="Module tab: twelve module cards with ECTS, semester and grade/Studienleistung state">
+      <figcaption>Module tab: one card per module — ECTS, semester, grade or Studienleistung state, edit / delete — with search, status and semester filters plus sorting across the top. Twelve demo modules over four semesters.</figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="sections/oop_student_organizer/assets/fristen-tab.png" alt="Fristen tab: deadline cards with red, orange and green state borders">
+      <figcaption>Fristen tab: deadlines sorted overdue-first; the card border carries the state — red <i>überfällig</i>, orange <i>offen</i>, green <i>erledigt</i> — with one-click "Erledigt" and a one-file .ics calendar export.</figcaption>
+    </figure>
+  </div>
+
+  <div class="strip">
+    <figure class="shot">
+      <img src="sections/oop_student_organizer/assets/notensimulator-input.png" alt="Notensimulator input dialog: assumed grade 2,0 for all open graded modules">
+      <figcaption>The simulator is a real dialog: the assumed grade for all open graded modules…</figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="sections/oop_student_organizer/assets/notensimulator-result.png" alt="Notenprojektion alert: projection 2,03, needed grades 1,89 and 3,53, targets 1,0/1,5/3,0 unreachable">
+      <figcaption>…and the projection it prints for the demo semester: current 2,05 → <b>2,03</b> if the open modules land at 2,0; a final 2,0 needs a 1,89 average in the open modules, 2,5 needs 3,53 — 1,0 / 1,5 / 3,0 are mathematically out of reach.</figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="sections/oop_student_organizer/assets/semester-dashboard.png" alt="Semester-Dashboard: monospace progress bars per semester">
+      <figcaption>Semester-Dashboard: progress and running average per semester as a monospace bar report — 100 % / 100 % / 69 % / 28 % over the demo history.</figcaption>
+    </figure>
+  </div>
+
+  <p class="caption">All captures come from a headless capture run against a seeded demo home directory (<code>tools/demo-data/</code>, fictional modules) — the app's real user data never left its own folder.</p>
+
+  <h3>Three tabs, one window</h3>
+  <ul>
+    <li><b>Module</b> — cards per module with ECTS, semester and Leistung (Prüfungsnote or Studienleistung), searchable and filterable; module add/edit validated ("ECTS müssen größer als 0 sein.").</li>
+    <li><b>Fristen</b> — Anmeldung / Abgabe / Klausur deadlines with the three-colour state model, done-marking, and an iCalendar (.ics) export of every deadline.</li>
+    <li><b>Noten</b> — the ECTS-weighted average, passed/total ECTS, the progress pie, the grade chart, the Notensimulator and the per-semester dashboard.</li>
+  </ul>
+
+  <h3>Under the hood</h3>
+  <div class="grid-2">
+    <div class="card code"><h3>The simulator, solved for x</h3><pre>// LeistungsRechner.java — "what do I need for endnote X?"
+double rest   = zielnote * (fixEcts + offenEcts) - fixNoteEcts;
+double noetig = rest / offenEcts;
+if (noetig &lt; 1.0 || noetig &gt; 5.0)
+    return Optional.empty(); // UI: "nicht mehr erreichbar"</pre></div>
+    <div class="card code"><h3>Shape of the codebase</h3><pre>com.example.einf            (JPMS module)
+├─ Main                   load/save · wiring · exit flush
+├─ HomeController         one FXML, all @FXML refs
+│   ├─ ModuleTabController      search · filters · cards · dialog
+│   ├─ DeadlineTabController    states · done · ICS export
+│   └─ GradesTabController      GPA · charts · Notensimulator
+├─ Modul · Deadline · Semester · Leistung
+│   (Pruefungsleistung · Studienleistung)
+├─ LeistungsRechner · EctsFortschritt · SemesterStatistik
+└─ SpeicherManager · IcsExporter</pre></div>
+  </div>
+  <p>The tab logic was extracted from the former <b>674-line HomeController</b> into a coordinator plus one controller per tab (674 → 189 lines), while the single FXML stayed untouched on purpose — no <code>fx:include</code> rewrite on a UI that deliberately has no FXML-loading test coverage. Persistence is equally deliberate: two semicolon-separated CSVs with custom escaping (<code>\;</code> / <code>\n</code>), a <code>.bak</code> copy before every overwrite, and a legacy four-column reader that still loads module files written before the split. The simulator math is pinned by its own test class, and the website widget is pinned against the same implementation.</p>
+
+  <p class="muted">Source: <a href="https://github.com/daniilperkin-uni/oop_student_organizer">github.com/daniilperkin-uni/oop_student_organizer</a> (public).</p>
+</section>
+<section class="project" id="computergrafik_aufgaben">
+  <header class="p-head">
+    <p class="p-owner">@computergrafik · section live</p>
+    <h2>Computergrafik</h2>
+    <p class="p-lede">Nine exercise sheets that climb from C++ fundamentals to a CPU raytracer and real-time OpenGL. Every image below was captured from the actual builds, and the widget re-renders the Blatt&nbsp;04 scene live in your browser — a 1:1 port of the exercise's renderer, verified byte-identical to the native output.</p>
+    <p class="chips"><span class="chip">C++17</span><span class="chip">CMake</span><span class="chip">OpenGL 4.5</span><span class="chip">GLFW · GLM</span><span class="chip">ImGui</span><span class="chip">tinygltf</span><span class="chip">ctest</span><span class="chip">GitHub Actions</span></p>
+    <p class="muted">01 C++ fundamentals · 02 image pipelines · 03–04 raytracer · 05 transformations (written) · 06 rasterizer · 07 image filters · 08 instancing · 09 glTF shading</p>
+  </header>
+
+  <div class="mount" id="rt-mount"></div>
+  <p class="caption"><b>Live</b> — the Blatt 04 scene (32 spheres, 16 colored point lights, mirror floor) re-rendered in JavaScript on your CPU: the same scene and the same math as the C++ build — at 600×600 the port produced the identical PPM, byte for byte. Switch shadows or reflections off to feel what they cost.</p>
+
+  <div class="kpis">
+    <div class="kpi"><b>9</b><span>sheets, Blatt 01–09</span></div>
+    <div class="kpi"><b>8/8</b><span>CI jobs green on master — every sheet with code, plus the root build</span></div>
+    <div class="kpi"><b>1 px</b><span>of 360,000 differs from the course reference in Blatt 03's ctest check (tolerance 0.1%)</span></div>
+    <div class="kpi"><b>32 · 16 · 5</b><span>spheres · point lights · reflection depth (Blatt 04)</span></div>
+  </div>
+  <h3>Blatt 03–04 · the raytracer</h3>
+  <div class="grid-2">
+    <figure class="shot">
+      <img src="sections/computergrafik_aufgaben/assets/blatt04-scene.png" alt="Ray-traced scene: colored spheres above a checkered floor, with shadows and mirror reflections">
+      <figcaption>Blatt 04, 600×600 — Phong lighting with distance attenuation over 16 point lights, shadow rays and recursive mirror reflections (depth 5), rendered by an OpenMP-parallel loop. This sheet's reference is an eye-compare; this frame is the current code's output, re-rendered for this site.</figcaption>
+    </figure>
+    <div class="card code">
+      <h3>main.cpp — the Phong term the widget above replays</h3>
+      <pre>// Diffuse reflection (Lambert).
+const double diff_dot = std::max(0.0, surface_normal.dot(light_direction));
+const Vec3d diffuse = std::get&lt;1&gt;(phong_coeff) * diff_dot * light_color;
+
+// Specular reflection (Phong).
+const Vec3d reflection_direction =
+    2 * surface_normal.dot(light_direction) * surface_normal - light_direction;
+const double spec_dot = std::max(0.0, reflection_direction.dot(view_direction));
+const Vec3d specular = std::get&lt;2&gt;(phong_coeff) *
+    std::pow(spec_dot, std::get&lt;3&gt;(phong_coeff)) * light_color;</pre>
+    </div>
+  </div>
+  <div class="grid-2">
+    <figure class="shot">
+      <img src="sections/computergrafik_aufgaben/assets/blatt03-raygen.png" alt="Ray generation stage: checkered ground plane and dark blue sky">
+      <figcaption>Blatt 03, stage 1 — one ray through every pixel centre (course reference image; the committed code renders the next stage).</figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="sections/computergrafik_aufgaben/assets/blatt03-spheres.png" alt="Sphere-intersection stage: spheres with flat colours on the checkered plane">
+      <figcaption>Blatt 03, stage 2 — first sphere intersections. <code>ctest</code> compares this against the in-repo reference and fails on more than 0.1% differing pixels — ours comes out 1 pixel off in 360,000.</figcaption>
+    </figure>
+  </div>
+  <h3>Blatt 02 · image pipelines, from PPM bytes to colour spaces</h3>
+  <div class="ba"><img class="a" src="sections/computergrafik_aufgaben/assets/ginkgo-original.webp" alt="Ginkgo photo — original"><img class="b" src="sections/computergrafik_aufgaben/assets/ginkgo-modified.webp" alt="Ginkgo photo with the colour-key effect applied"><input type="range" value="50"></div>
+  <p class="caption">Blatt 02 — drag the handle: the original photo vs the colour-key effect (exercise 4, computed in HSV). The other kept results — grayscale and black/white:</p>
+  <div class="strip">
+    <figure class="shot"><img src="sections/computergrafik_aufgaben/assets/ginkgo-gray.webp" alt="Grayscale conversion result"><figcaption>Exercise 1 — grayscale.</figcaption></figure>
+    <figure class="shot"><img src="sections/computergrafik_aufgaben/assets/ginkgo-bw.webp" alt="Black and white conversion result"><figcaption>Exercise 2 — black/white.</figcaption></figure>
+  </div>
+
+  <h3>Blatt 06–07 · software rasterizer &amp; image filtering</h3>
+  <figure class="shot">
+    <img src="sections/computergrafik_aufgaben/assets/blatt06-viewer.png" alt="Software rasterizer rendering a DNA double helix with an ImGui control panel">
+    <figcaption>Blatt 06 — ImageViewer: a software rasterizer (points / wireframe / filled triangles with z-buffer, Bresenham lines, barycentric interpolation) drawing a procedural DNA double helix, with a live ImGui control panel over it.</figcaption>
+  </figure>
+  <div class="strip">
+    <figure class="shot"><img src="sections/computergrafik_aufgaben/assets/blatt07-viewer.webp" alt="ImageViewer07 GUI showing the Ginkgo photo with filter controls"><figcaption>Blatt 07 — ImageViewer07: convolution filtering of the Ginkgo photo — Laplacian edges, 2D and separable Gaussian, selectable kernel extents, sigma and border policies (CPU, or a compute shader for the separable Gaussian).</figcaption></figure>
+    <figure class="shot"><img src="sections/computergrafik_aufgaben/assets/ginkgo-edges.webp" alt="Edge detection result: dark image with bright outlines"><figcaption>Console mode — Laplacian edge detection.</figcaption></figure>
+    <figure class="shot"><img src="sections/computergrafik_aufgaben/assets/ginkgo-blur.webp" alt="Blurred Ginkgo photo"><figcaption>Console mode — separable Gaussian (σ = 2, kernel extent 4×4).</figcaption></figure>
+  </div>
+  <h3>Blatt 08 · instancing and imposters</h3>
+  <div class="ba"><img class="a" src="sections/computergrafik_aufgaben/assets/blatt08-geometry.webp" alt="Forest rendered with full instanced tree geometry"><img class="b" src="sections/computergrafik_aufgaben/assets/blatt08-imposters.webp" alt="The same forest rendered with billboard imposters"><input type="range" value="50"></div>
+  <p class="caption">Blatt 08 — same forest, same camera; drag to compare: 192 trees as full instanced 3D geometry (left) vs as camera-facing billboard imposters (right). All buffers, VAOs and textures go through Direct State Access (OpenGL 4.5).</p>
+
+  <h3>Blatt 09 · glTF scene shading</h3>
+  <figure class="shot">
+    <img src="sections/computergrafik_aufgaben/assets/blatt09-scene.webp" alt="The course's original glTF scene rendered with Phong shading: an industrial cellar with brick walls, ventilation ducts and barrels">
+    <figcaption>Blatt 09 — the course's own scene, loaded via tinygltf with an index-based transform hierarchy and Phong + normal-mapping shaders: an industrial cellar (brick walls, air ducts, barrels) lit by four point lights. The <code>scene.glb</code> was the one file missing from the public repo — this frame was captured from the original Aufgabenblatt 9 course files.</figcaption>
+  </figure>
+
+  <p class="muted">Build &amp; verification: one CMake tree builds every sheet; GitHub Actions runs a job per sheet plus the root build on every push, and the Blatt 03 <code>ctest</code> reference check rides along. All captures come from a headless Docker pass (Xvfb + software GL) against the archived code. Source: <a href="https://github.com/daniilperkin-uni/computergraphik_aufgaben">github.com/daniilperkin-uni/computergraphik_aufgaben</a>.</p>
+</section>
+</main>
+<footer class="footer"><div class="wrap">
+  Local build — regenerate with <code>node build.mjs</code>, serve with <code>node serve.mjs</code>. Sections © their project agents, <span id="year">2026</span>.
+</div></footer>
+<script src="assets/js/site.js"></script>
+<script defer src="sections/sopra_office_dashboard/script.js"></script>
+<script defer src="sections/pe2_todo_app/script.js"></script>
+<script defer src="sections/pe2_library_cli/script.js"></script>
+<script defer src="sections/pe1_selection_wheel/script.js"></script>
+<script defer src="sections/oop_student_organizer/script.js"></script>
+<script defer src="sections/computergrafik_aufgaben/script.js"></script>
+</body>
+</html>

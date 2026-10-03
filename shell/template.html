@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Uni old projects — Daniil Perkin</title>
+<link rel="icon" href="data:,">
+<script>(function(){try{var t=localStorage.getItem('uop-theme');if(t==='light'||t==='dark'){document.documentElement.dataset.theme=t}else if(window.matchMedia('(prefers-color-scheme: light)').matches){document.documentElement.dataset.theme='light'}}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<!-- @SECTION_STYLES@ -->
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">Daniil Perkin · Uni old projects</p>
+    <h1>Six university projects, one interactive site.</h1>
+    <p class="lede">A tour through my CS coursework — real captures of the running apps, demos ported from the actual source code, and the story behind each build. Every section is contributed by that project's own build agent.</p>
+  </div>
+</header>
+<nav class="topnav"><div class="wrap" id="topnav">
+<!-- @NAV@ -->
+<button id="theme-toggle" type="button">Light theme</button>
+</div></nav>
+<main class="wrap">
+<!-- @SECTIONS@ -->
+</main>
+<footer class="footer"><div class="wrap">
+  Local build — regenerate with <code>node build.mjs</code>, serve with <code>node serve.mjs</code>. Sections © their project agents, <span id="year">2026</span>.
+</div></footer>
+<script src="assets/js/site.js"></script>
+<!-- @SECTION_SCRIPTS@ -->
+</body>
+</html>

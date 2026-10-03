@@ -1,0 +1,45 @@
+/* EInf Student Organizer — section styles */
+#oop_student_organizer .p-owner{color:var(--accent-2);font-size:13px;margin:0 0 2px;font-weight:600;letter-spacing:.04em}
+/* interactive grade simulator */
+#oop_student_organizer .sim{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:18px 0}
+#oop_student_organizer .sim-head h3{margin:0 0 6px}
+#oop_student_organizer .sim-head p{color:var(--muted);font-size:14px;margin:0 0 14px}
+#oop_student_organizer .sim-body{display:grid;grid-template-columns:1.35fr 1fr;gap:22px;align-items:start}
+@media(max-width:900px){#oop_student_organizer .sim-body{grid-template-columns:1fr}}
+#oop_student_organizer .sim-list{min-width:0}
+#oop_student_organizer #sim-rows{max-height:342px;overflow:auto;padding-right:4px}
+#oop_student_organizer .sim-row{display:grid;grid-template-columns:minmax(110px,1.4fr) 58px minmax(104px,124px) 24px;gap:8px;align-items:center;padding:3px 0}
+#oop_student_organizer .sim-row-head span{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+#oop_student_organizer .sim-row input,#oop_student_organizer .sim-row select{font:inherit;font-size:13.5px;color:var(--text);background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:5px 7px;width:100%;min-width:0}
+#oop_student_organizer .sim-row input:focus,#oop_student_organizer .sim-row select:focus{outline:none;border-color:var(--accent)}
+#oop_student_organizer .sim-ects{text-align:right}
+#oop_student_organizer .sim-del{background:none;border:none;color:var(--muted);font-size:17px;line-height:1;cursor:pointer;border-radius:6px;padding:2px 4px}
+#oop_student_organizer .sim-del:hover{color:#d93025;background:var(--surface2)}
+#oop_student_organizer .sim-row-actions{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+#oop_student_organizer .sim-btn{background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:6px 12px;font:inherit;font-size:13.5px;cursor:pointer}
+#oop_student_organizer .sim-btn:hover{border-color:var(--accent)}
+#oop_student_organizer .sim-btn-ghost{color:var(--muted)}
+#oop_student_organizer .sim-side{display:flex;flex-direction:column;gap:12px}
+#oop_student_organizer .sim-wish{font-size:13.5px;color:var(--muted);display:flex;flex-direction:column;gap:6px}
+#oop_student_organizer .sim-wish input{width:100%;accent-color:var(--accent)}
+#oop_student_organizer #sim-wish-val{color:var(--text);font-weight:700}
+#oop_student_organizer .sim-out{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#oop_student_organizer .sim-kpi{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+#oop_student_organizer .sim-kpi b{display:block;font-size:24px;color:var(--accent)}
+#oop_student_organizer .sim-kpi + .sim-kpi b{color:var(--ok)}
+#oop_student_organizer .sim-kpi span{font-size:12.5px;color:var(--muted)}
+#oop_student_organizer .sim-need{border:1px solid var(--border);border-radius:10px;overflow:hidden}
+#oop_student_organizer .sim-need-row{display:flex;justify-content:space-between;gap:10px;padding:7px 12px;font-size:13.5px;border-top:1px solid var(--border)}
+#oop_student_organizer .sim-need-row:first-child{border-top:none}
+#oop_student_organizer .sim-need-row .na{color:var(--muted);font-weight:500}
+#oop_student_organizer .sim-need-row .ok{color:var(--ok);font-weight:600}
+#oop_student_organizer .sim-foot{color:var(--muted);font-size:12.5px;margin:0}
+#oop_student_organizer .strip{align-items:start}
+@media(max-width:560px){
+  #oop_student_organizer .sim-row{grid-template-columns:1fr 58px 26px;grid-template-areas:"name ects del" "note note note";row-gap:6px}
+  #oop_student_organizer .sim-name{grid-area:name}
+  #oop_student_organizer .sim-ects{grid-area:ects}
+  #oop_student_organizer .sim-note{grid-area:note}
+  #oop_student_organizer .sim-del{grid-area:del}
+  #oop_student_organizer .sim-row-head{display:none}
+}

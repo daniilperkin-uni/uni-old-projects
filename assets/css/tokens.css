@@ -1,0 +1,15 @@
+/* Shared design tokens - light & dark. Sections must use these variables. */
+:root{
+  --bg:#0b0e14;--surface:#131826;--surface2:#1a2133;--text:#e8ecf4;--muted:#9aa4ba;
+  --border:#252d42;--accent:#7c9cff;--accent-2:#4ecdc4;--warn:#ffb454;--ok:#5cd68a;
+  --code:#0d1117;--shadow:0 12px 32px rgba(0,0,0,.4);
+  --radius:14px;
+  --font:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+  --mono:"Cascadia Code",Consolas,"SF Mono",Menlo,monospace;
+}
+html[data-theme="light"]{
+  --bg:#f6f7fb;--surface:#ffffff;--surface2:#eef1f8;--text:#171b26;--muted:#5a6474;
+  --border:#e2e6f0;--accent:#3a5bd9;--accent-2:#0b7970;--warn:#a15c00;--ok:#1b7b44;
+  /* light accents are WCAG-AA tuned: accent-2/ok/warn >=4.59:1 (AA threshold 4.5) on white, #f6f7fb and #eef1f8 */
+  --code:#f3f4f8;--shadow:0 12px 32px rgba(23,32,64,.10);
+}

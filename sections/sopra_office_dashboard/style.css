@@ -1,0 +1,30 @@
+/* SoPra Office Dashboard — section styles (uni-old-projects) */
+#sopra_office_dashboard .p-owner{color:var(--accent-2);font-size:13px;margin:0 0 2px;font-weight:600;letter-spacing:.04em}
+/* kiosk replay widget */
+#sopra_office_dashboard .kiosk{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+#sopra_office_dashboard .k-top{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--surface2);border-bottom:1px solid var(--border)}
+#sopra_office_dashboard .k-top i{width:10px;height:10px;border-radius:50%;background:var(--border);flex:none}
+#sopra_office_dashboard .k-top i:nth-child(1){background:#ff5f57}
+#sopra_office_dashboard .k-top i:nth-child(2){background:#febc2e}
+#sopra_office_dashboard .k-top i:nth-child(3){background:#28c840}
+#sopra_office_dashboard .k-title{font-size:12.5px;color:var(--muted)}
+#sopra_office_dashboard .k-4k{margin-left:auto;font-size:11.5px;color:var(--muted);border:1px solid var(--border);border-radius:999px;padding:1px 8px;font-family:var(--mono)}
+#sopra_office_dashboard .k-play{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:3px 10px;font:inherit;font-size:12.5px;cursor:pointer}
+#sopra_office_dashboard .k-play:hover{border-color:var(--accent);color:var(--accent)}
+#sopra_office_dashboard .k-stage{position:relative;aspect-ratio:16/9;background:#0a0d13;cursor:zoom-in}
+#sopra_office_dashboard .k-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0}
+#sopra_office_dashboard .k-stage img.on{opacity:1}
+#sopra_office_dashboard .k-stage:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+#sopra_office_dashboard .k-hint{position:absolute;right:10px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6);background:rgba(10,13,19,.55);border-radius:6px;padding:2px 7px;pointer-events:none}
+#sopra_office_dashboard .k-ctrl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 12px;background:var(--surface2);border-top:1px solid var(--border)}
+#sopra_office_dashboard .k-group{display:flex;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+#sopra_office_dashboard .k-group button{background:transparent;border:0;color:var(--muted);font:inherit;font-size:12.5px;padding:5px 12px;cursor:pointer}
+#sopra_office_dashboard .k-group button+button{border-left:1px solid var(--border)}
+#sopra_office_dashboard .k-group button.on{background:var(--accent);color:var(--bg)}
+#sopra_office_dashboard .k-tabs{display:flex;flex-wrap:wrap;gap:6px}
+#sopra_office_dashboard .k-tabs button{background:var(--surface);border:1px solid var(--border);color:var(--muted);border-radius:999px;padding:4px 11px;font:inherit;font-size:12.5px;cursor:pointer}
+#sopra_office_dashboard .k-tabs button:hover{color:var(--text);border-color:var(--accent)}
+#sopra_office_dashboard .k-tabs button.on{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+#sopra_office_dashboard .k-count{margin-left:auto;font-size:12px;color:var(--muted);font-family:var(--mono)}
+#sopra_office_dashboard .k-cap{padding:10px 14px;font-size:13.5px;color:var(--muted);border-top:1px solid var(--border);min-height:40px;margin:0}
+#sopra_office_dashboard .k-cap b{color:var(--text)}

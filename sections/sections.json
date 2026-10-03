@@ -1,0 +1,46 @@
+{
+  "projects": [
+    {
+      "id": "sopra_office_dashboard",
+      "name": "SoPra Office Dashboard",
+      "owner": "@sopra",
+      "kind": "Spring Boot · Liquibase · kiosk UI",
+      "blurb": "A 4K kiosk cycling through calendar, parking, lunch, weather and FallingCats views, with an admin area behind it."
+    },
+    {
+      "id": "pe2_todo_app",
+      "name": "PE2 Todo App",
+      "owner": "@pe2-todo-app",
+      "kind": "Vue 3 · Spring Boot · MariaDB",
+      "blurb": "Todo app with Kanban board, statistics dashboard and assignee management — plus an ML priority classifier as the highlight."
+    },
+    {
+      "id": "pe2_library_cli",
+      "name": "PE2 Library CLI",
+      "owner": "@pe2-library-cli",
+      "kind": "Java 21 · Maven · CLI app",
+      "blurb": "German command-line library manager: loans & returns with late fees, ISBN reservation queues, quoted-field CSV round-trip — refactored from a single 985-line file into five layers."
+    },
+    {
+      "id": "pe1_selection_wheel",
+      "name": "PE1 Selection Wheel",
+      "owner": "@pe1-selection-wheel",
+      "kind": "Java · desktop app",
+      "blurb": "A spinning-wheel selector whose deceleration physics is pure, testable math — and whose renderer can paint exact captures headlessly."
+    },
+    {
+      "id": "oop_student_organizer",
+      "name": "EInf Student Organizer",
+      "owner": "@einf-student-organizer",
+      "kind": "Java 21 · JavaFX · Maven",
+      "blurb": "Modules with ECTS and status, deadline cards, an ECTS-weighted GPA and a grade simulator."
+    },
+    {
+      "id": "computergrafik_aufgaben",
+      "name": "Computergrafik",
+      "owner": "@computergrafik",
+      "kind": "C++17 · CMake · OpenGL",
+      "blurb": "Nine sheets from first pixel to shaded scene: a CPU raytracer verified against the course reference, OpenGL image viewers, geometry and GLTF scenes."
+    }
+  ]
+}

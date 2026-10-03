@@ -1,0 +1,81 @@
+<section class="project" id="pe2_todo_app">
+  <header class="p-head">
+    <p class="p-owner">@pe2-todo-app · section live</p>
+    <h2>PE2 Todo App</h2>
+    <p class="p-lede">A full-stack Todo web app: a Vue 3 + TypeScript SPA on a Spring Boot 4.1 REST API with MariaDB in Docker — and a trained ML classifier that sorts every todo title into <b>work</b> or <b>private</b> as it is saved.</p>
+    <p class="chips"><span class="chip">Vue 3.5</span><span class="chip">TypeScript 5.9</span><span class="chip">Vite 7</span><span class="chip">Spring Boot 4.1.1</span><span class="chip">Java 21</span><span class="chip">MariaDB 11.8</span><span class="chip">Docker Compose</span><span class="chip">JPMML · PMML classifier</span></p>
+  </header>
+
+  <h3>The classifier — running in your browser</h3>
+  <div class="mount" id="cls-mount"></div>
+  <p class="caption">The backend loads <code>model.pmml</code> (a 38-token TF-IDF linear model, logit-normalized) through JPMML and classifies each todo on create and update — the statistics view splits by the resulting category. This widget runs the same model's arithmetic in JS, ported token-by-token from the PMML: tokenize → idf × coefficient per matched token → signed score → class. Try the chips, or type a title like <code>team car</code> and watch which side of the line it lands on.</p>
+
+  <div class="kpis">
+    <div class="kpi"><b>73</b><span>backend tests green — surefire, 8 suites on H2</span></div>
+    <div class="kpi"><b>28</b><span>frontend tests green — Vitest, 5 files</span></div>
+    <div class="kpi"><b>92%</b><span>instruction coverage (JaCoCo gate ≥ 80%)</span></div>
+    <div class="kpi"><b>38</b><span>token weights in the ported model</span></div>
+  </div>
+
+  <h3>Screens from the running app</h3>
+  <p>Real captures of the Docker Compose stack (MariaDB + API + nginx) at 1600×1000 @2×, with demo content seeded through the REST API — fictional names only.</p>
+  <div class="grid-2">
+    <figure class="shot">
+      <img src="sections/pe2_todo_app/assets/01-todos-light.png" alt="Todos list view, light theme">
+      <figcaption>Todos (light) — the list view: priority, due date, assignees and finished state per row; the weekly recurrence chain shows its next occurrence.</figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="sections/pe2_todo_app/assets/02-todos-dark.png" alt="Todos list view, dark theme">
+      <figcaption>The same list in dark theme — both palettes come from shared design tokens, toggled in the header.</figcaption>
+    </figure>
+  </div>
+  <div class="grid-2">
+    <figure class="shot">
+      <img src="sections/pe2_todo_app/assets/04-board-light.png" alt="Kanban board, light theme">
+      <figcaption>Kanban board (light) — OPEN / IN_PROGRESS / DONE, with the finished flag kept in sync on every move and finishing spawning the next recurrence.</figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="sections/pe2_todo_app/assets/03-board-dark.png" alt="Kanban board, dark theme">
+      <figcaption>The board in dark theme.</figcaption>
+    </figure>
+  </div>
+  <div class="grid-2">
+    <figure class="shot">
+      <img src="sections/pe2_todo_app/assets/05-stats-light.png" alt="Statistics dashboard">
+      <figcaption>Statistics — completion rate, average days to finish, per-priority / per-category / per-assignee counts, and the classifier feedback panel that records corrections for retraining (the demo set splits 8 private / 5 work).</figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="sections/pe2_todo_app/assets/06-assignees-light.png" alt="Assignees overview">
+      <figcaption>Assignees — CRUD with uni-stuttgart.de email validation (stud. / iste. / ipvs. / sec.) enforced server-side.</figcaption>
+    </figure>
+  </div>
+
+  <h3>What it does</h3>
+  <ul>
+    <li><b>Todos CRUD + assignment</b> — description, LOW/MEDIUM/HIGH priority, assignees resolved server-side; validation failures come back as RFC 7807 ProblemDetail.</li>
+    <li><b>Kanban board in sync with the finished flag</b> — finishing from the list or dragging a card to DONE keeps status and flag consistent; both write paths are pinned by tests.</li>
+    <li><b>Recurring todos</b> — WEEKLY/MONTHLY with month-end clamping; finishing spawns exactly one successor, and a repeated DONE move never duplicates it.</li>
+    <li><b>Overdue-friendly due dates</b> — a new due date must be in the future, but an already-overdue todo stays editable and finishable.</li>
+    <li><b>ML category + feedback loop</b> — every title is classified; recorded priority corrections are training data for a future retrain of the model.</li>
+    <li><b>Stats &amp; exports</b> — completion rate, average days to finish, per-priority/category/assignee breakdowns, and CSV downloads.</li>
+  </ul>
+
+  <h3>Architecture</h3>
+  <div class="grid-2">
+    <div class="card code"><pre>api/ — Spring Boot 4.1.1 · Java 21
+├─ TodoController · AssigneeController
+├─ CsvDownloadController · PriorityCorrectionController
+├─ TodoService  (@Transactional business logic)
+│    └─ classifier.classify(title) → JPMML model.pmml
+├─ Repository (Spring Data JPA) → MariaDB (H2 in tests)
+└─ GlobalExceptionHandler → RFC 7807 ProblemDetail</pre></div>
+    <div class="card code"><pre>frontend/ — Vue 3.5 · TS 5.9 · Vite 7
+├─ views/       Todos · Board · Stats · Assignees
+├─ components/  TodoList · TodoForm · AssigneeList …
+├─ services/apiService.ts   (single API layer)
+├─ router/      hash-based
+└─ assets/base.css   design tokens + light/dark themes</pre></div>
+  </div>
+
+  <p class="muted">Docker Compose brings up MariaDB + API + nginx with one command. Source: <a href="https://github.com/daniilperkin-uni/pe2_todo_app">github.com/daniilperkin-uni/pe2_todo_app</a> (public).</p>
+</section>

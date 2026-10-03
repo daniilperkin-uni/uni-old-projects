@@ -1,0 +1,78 @@
+<section class="project" id="computergrafik_aufgaben">
+  <header class="p-head">
+    <p class="p-owner">@computergrafik · section live</p>
+    <h2>Computergrafik</h2>
+    <p class="p-lede">Nine exercise sheets that climb from C++ fundamentals to a CPU raytracer and real-time OpenGL. Every image below was captured from the actual builds, and the widget re-renders the Blatt&nbsp;04 scene live in your browser — a 1:1 port of the exercise's renderer, verified byte-identical to the native output.</p>
+    <p class="chips"><span class="chip">C++17</span><span class="chip">CMake</span><span class="chip">OpenGL 4.5</span><span class="chip">GLFW · GLM</span><span class="chip">ImGui</span><span class="chip">tinygltf</span><span class="chip">ctest</span><span class="chip">GitHub Actions</span></p>
+    <p class="muted">01 C++ fundamentals · 02 image pipelines · 03–04 raytracer · 05 transformations (written) · 06 rasterizer · 07 image filters · 08 instancing · 09 glTF shading</p>
+  </header>
+
+  <div class="mount" id="rt-mount"></div>
+  <p class="caption"><b>Live</b> — the Blatt 04 scene (32 spheres, 16 colored point lights, mirror floor) re-rendered in JavaScript on your CPU: the same scene and the same math as the C++ build — at 600×600 the port produced the identical PPM, byte for byte. Switch shadows or reflections off to feel what they cost.</p>
+
+  <div class="kpis">
+    <div class="kpi"><b>9</b><span>sheets, Blatt 01–09</span></div>
+    <div class="kpi"><b>8/8</b><span>CI jobs green on master — every sheet with code, plus the root build</span></div>
+    <div class="kpi"><b>1 px</b><span>of 360,000 differs from the course reference in Blatt 03's ctest check (tolerance 0.1%)</span></div>
+    <div class="kpi"><b>32 · 16 · 5</b><span>spheres · point lights · reflection depth (Blatt 04)</span></div>
+  </div>
+  <h3>Blatt 03–04 · the raytracer</h3>
+  <div class="grid-2">
+    <figure class="shot">
+      <img src="sections/computergrafik_aufgaben/assets/blatt04-scene.png" alt="Ray-traced scene: colored spheres above a checkered floor, with shadows and mirror reflections">
+      <figcaption>Blatt 04, 600×600 — Phong lighting with distance attenuation over 16 point lights, shadow rays and recursive mirror reflections (depth 5), rendered by an OpenMP-parallel loop. This sheet's reference is an eye-compare; this frame is the current code's output, re-rendered for this site.</figcaption>
+    </figure>
+    <div class="card code">
+      <h3>main.cpp — the Phong term the widget above replays</h3>
+      <pre>// Diffuse reflection (Lambert).
+const double diff_dot = std::max(0.0, surface_normal.dot(light_direction));
+const Vec3d diffuse = std::get&lt;1&gt;(phong_coeff) * diff_dot * light_color;
+
+// Specular reflection (Phong).
+const Vec3d reflection_direction =
+    2 * surface_normal.dot(light_direction) * surface_normal - light_direction;
+const double spec_dot = std::max(0.0, reflection_direction.dot(view_direction));
+const Vec3d specular = std::get&lt;2&gt;(phong_coeff) *
+    std::pow(spec_dot, std::get&lt;3&gt;(phong_coeff)) * light_color;</pre>
+    </div>
+  </div>
+  <div class="grid-2">
+    <figure class="shot">
+      <img src="sections/computergrafik_aufgaben/assets/blatt03-raygen.png" alt="Ray generation stage: checkered ground plane and dark blue sky">
+      <figcaption>Blatt 03, stage 1 — one ray through every pixel centre (course reference image; the committed code renders the next stage).</figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="sections/computergrafik_aufgaben/assets/blatt03-spheres.png" alt="Sphere-intersection stage: spheres with flat colours on the checkered plane">
+      <figcaption>Blatt 03, stage 2 — first sphere intersections. <code>ctest</code> compares this against the in-repo reference and fails on more than 0.1% differing pixels — ours comes out 1 pixel off in 360,000.</figcaption>
+    </figure>
+  </div>
+  <h3>Blatt 02 · image pipelines, from PPM bytes to colour spaces</h3>
+  <div class="ba"><img class="a" src="sections/computergrafik_aufgaben/assets/ginkgo-original.webp" alt="Ginkgo photo — original"><img class="b" src="sections/computergrafik_aufgaben/assets/ginkgo-modified.webp" alt="Ginkgo photo with the colour-key effect applied"><input type="range" value="50"></div>
+  <p class="caption">Blatt 02 — drag the handle: the original photo vs the colour-key effect (exercise 4, computed in HSV). The other kept results — grayscale and black/white:</p>
+  <div class="strip">
+    <figure class="shot"><img src="sections/computergrafik_aufgaben/assets/ginkgo-gray.webp" alt="Grayscale conversion result"><figcaption>Exercise 1 — grayscale.</figcaption></figure>
+    <figure class="shot"><img src="sections/computergrafik_aufgaben/assets/ginkgo-bw.webp" alt="Black and white conversion result"><figcaption>Exercise 2 — black/white.</figcaption></figure>
+  </div>
+
+  <h3>Blatt 06–07 · software rasterizer &amp; image filtering</h3>
+  <figure class="shot">
+    <img src="sections/computergrafik_aufgaben/assets/blatt06-viewer.png" alt="Software rasterizer rendering a DNA double helix with an ImGui control panel">
+    <figcaption>Blatt 06 — ImageViewer: a software rasterizer (points / wireframe / filled triangles with z-buffer, Bresenham lines, barycentric interpolation) drawing a procedural DNA double helix, with a live ImGui control panel over it.</figcaption>
+  </figure>
+  <div class="strip">
+    <figure class="shot"><img src="sections/computergrafik_aufgaben/assets/blatt07-viewer.webp" alt="ImageViewer07 GUI showing the Ginkgo photo with filter controls"><figcaption>Blatt 07 — ImageViewer07: convolution filtering of the Ginkgo photo — Laplacian edges, 2D and separable Gaussian, selectable kernel extents, sigma and border policies (CPU, or a compute shader for the separable Gaussian).</figcaption></figure>
+    <figure class="shot"><img src="sections/computergrafik_aufgaben/assets/ginkgo-edges.webp" alt="Edge detection result: dark image with bright outlines"><figcaption>Console mode — Laplacian edge detection.</figcaption></figure>
+    <figure class="shot"><img src="sections/computergrafik_aufgaben/assets/ginkgo-blur.webp" alt="Blurred Ginkgo photo"><figcaption>Console mode — separable Gaussian (σ = 2, kernel extent 4×4).</figcaption></figure>
+  </div>
+  <h3>Blatt 08 · instancing and imposters</h3>
+  <div class="ba"><img class="a" src="sections/computergrafik_aufgaben/assets/blatt08-geometry.webp" alt="Forest rendered with full instanced tree geometry"><img class="b" src="sections/computergrafik_aufgaben/assets/blatt08-imposters.webp" alt="The same forest rendered with billboard imposters"><input type="range" value="50"></div>
+  <p class="caption">Blatt 08 — same forest, same camera; drag to compare: 192 trees as full instanced 3D geometry (left) vs as camera-facing billboard imposters (right). All buffers, VAOs and textures go through Direct State Access (OpenGL 4.5).</p>
+
+  <h3>Blatt 09 · glTF scene shading</h3>
+  <figure class="shot">
+    <img src="sections/computergrafik_aufgaben/assets/blatt09-scene.webp" alt="The course's original glTF scene rendered with Phong shading: an industrial cellar with brick walls, ventilation ducts and barrels">
+    <figcaption>Blatt 09 — the course's own scene, loaded via tinygltf with an index-based transform hierarchy and Phong + normal-mapping shaders: an industrial cellar (brick walls, air ducts, barrels) lit by four point lights. The <code>scene.glb</code> was the one file missing from the public repo — this frame was captured from the original Aufgabenblatt 9 course files.</figcaption>
+  </figure>
+
+  <p class="muted">Build &amp; verification: one CMake tree builds every sheet; GitHub Actions runs a job per sheet plus the root build on every push, and the Blatt 03 <code>ctest</code> reference check rides along. All captures come from a headless Docker pass (Xvfb + software GL) against the archived code. Source: <a href="https://github.com/daniilperkin-uni/computergraphik_aufgaben">github.com/daniilperkin-uni/computergraphik_aufgaben</a>.</p>
+</section>

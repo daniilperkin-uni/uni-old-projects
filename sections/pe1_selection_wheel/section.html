@@ -1,0 +1,93 @@
+<section class="project" id="pe1_selection_wheel">
+  <header class="p-head">
+    <p class="p-owner">@pe1-selection-wheel · section live</p>
+    <h2>PE1 Selection Wheel</h2>
+    <p class="p-lede">A Swing wheel-of-fortune selector where the spin is real physics: drags and random spins decelerate at a constant &minus;20&nbsp;&deg;/s&sup2; and land under the pointer on whichever animal the math picks. The wheel below is the app itself, ported &mdash; the deceleration, the section index and the stop conditions come straight from the project's pure Java classes.</p>
+    <p class="chips"><span class="chip">Java 21</span><span class="chip">Swing / AWT</span><span class="chip">Maven</span><span class="chip">JUnit 5 · AssertJ</span><span class="chip">JaCoCo</span><span class="chip">GitHub Actions · xvfb</span><span class="chip">EDT-safe</span></p>
+  </header>
+
+  <div class="mount" id="wheel-mount"></div>
+  <p class="caption"><b>Live</b> &mdash; drag the wheel and release to flick it, click it mid-spin to stop it dead, press <b>Space</b>/<b>Enter</b> (or the button) for a random spin at 180&ndash;360&nbsp;&deg;/s. The animation advances in the app's own 10&nbsp;ms steps of <code>SpinStep.compute</code>, and the selection under the pointer is the same <code>floor(n + angle % 360 / 24&deg;) % n</code>. Spin speed and direction, deceleration and landing are validated 1:1 against the Java classes &mdash; 8,892 generated test vectors, zero mismatches.</p>
+
+  <div class="kpis">
+    <div class="kpi"><b>106</b><span>tests green in <code>verify</code> — JUnit 5 + AssertJ, 0 failures</span></div>
+    <div class="kpi"><b>97–100%</b><span>instruction coverage of the pure layers (WheelMath · SpinStep · TickMath · WheelModel)</span></div>
+    <div class="kpi"><b>0</b><span>mismatches against the Java classes across 8,892 ported-math test vectors</span></div>
+    <div class="kpi"><b>10 ms</b><span>per physics step — the app's 100&nbsp;Hz timer, replayed exactly</span></div>
+  </div>
+
+  <h3>Screens from the running app</h3>
+  <p>Captured from the real app on this machine (<code>java -cp target/classes selectionwheel.MainWheel</code>): at rest, mid-spin at two speeds, after coming to rest, and the runtime file-loading dialog.</p>
+  <div class="grid-2">
+    <figure class="shot">
+      <img src="sections/pe1_selection_wheel/assets/app-idle.png" alt="Selection Wheel app at rest: the wheel with black borders, the Info panel and the Spin / Load list buttons">
+      <figcaption>At rest — 15 sections from the bundled <code>itemlist.txt</code>, borders on, the Info panel showing Selection / Angle / Speed, result bar idling on “Spin the wheel!”.</figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="sections/pe1_selection_wheel/assets/app-result.png" alt="Selection Wheel app just after a spin ended, result bar showing the selection">
+      <figcaption>Landed — this spin came to rest at −165.1° (German number format, as on this machine): <code>floor(15 + (−165.1 % 360) / 24) % 15 = 8</code> → “Rat”, exactly the wedge under the pointer. The inline result bar names it; no modal dialog ever blocks the flow.</figcaption>
+    </figure>
+  </div>
+  <div class="strip">
+    <figure class="shot">
+      <img src="sections/pe1_selection_wheel/assets/app-spin-fast.png" alt="Selection Wheel app early in a spin: button disabled, Spinning… shown">
+      <figcaption>Early in a random spin — the speed readout sits at 268 °/s and is decaying, the Spin button is disabled and the bar reads “Spinning…”.</figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="sections/pe1_selection_wheel/assets/app-spin-slow.png" alt="Selection Wheel app late in a spin: low speed readout">
+      <figcaption>A few seconds into the same spin — down to 197 °/s, with <code>v&sup2; / 2a &asymp; 970&deg;</code> (2.7 more turns) of deceleration still ahead.</figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="sections/pe1_selection_wheel/assets/app-load-dialog.png" alt="JFileChooser dialog for loading a custom item list">
+      <figcaption>“Load list…” — a UTF-8 text file (one item per line, up to 100) replaces the wheel's items at runtime; invalid files are reported and leave the wheel unchanged.</figcaption>
+    </figure>
+  </div>
+
+  <h3>Painting a wheel without a display</h3>
+  <p>The renderer was extracted so it can paint into a <code>BufferedImage</code> with no window involved — the images below come straight from <code>WheelRenderer.render(model, 1200, 1200)</code>. It is deliberately rotation-independent: the model's angle is applied by the component at paint time, so the cached image stays valid while the wheel turns.</p>
+  <div class="strip">
+    <figure class="shot">
+      <img src="sections/pe1_selection_wheel/assets/renderer-circle.png" alt="Wheel rendered at 1200 pixels, circle shape with the default 12-color palette">
+      <figcaption>The default <code>CIRCLE</code> shape, 15 sections — this exact frame also seeds the canvas widget above.</figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="sections/pe1_selection_wheel/assets/renderer-umbrella.png" alt="Wheel rendered at 1200 pixels in the umbrella shape">
+      <figcaption>The same renderer in the library's second shape, <code>UMBRELLA</code> — <code>setShape(Wheel.Shape.UMBRELLA)</code> swaps the fill geometry, everything else is shared.</figcaption>
+    </figure>
+  </div>
+
+  <h3>Architecture: three pure layers around a Swing shell</h3>
+  <div class="grid-2">
+    <div class="card code"><pre>selectionwheel/
+├─ WheelModel   state: items · angle · spin params
+│               — zero Swing imports
+├─ WheelMath    pure fns: section angle · [-360,360)
+│               normalize · selection index · drag delta
+├─ SpinStep     pure record: one 10 ms tick →
+│               (delta°, new speed, stop?)
+├─ TickMath     pure fns: pointer polygon geometry
+├─ Wheel · Tick · SelectionWheel  Swing views
+├─ WheelRenderer  paints into a BufferedImage
+└─ MainWheel    JFrame · keyboard · inline result bar</pre></div>
+    <div class="card code"><pre>// SpinStep.compute — the entire spin physics.
+public static SpinStep compute(double currentSpeed, int direction,
+        double deceleration, double dtSeconds) {
+    double delta = direction * (currentSpeed * dtSeconds);
+    double nextSpeed = currentSpeed + deceleration * dtSeconds;
+    if (nextSpeed &lt;= 0) { return new SpinStep(delta, 0, true); }
+    return new SpinStep(delta, nextSpeed, false);
+}</pre></div>
+  </div>
+  <p>Everything a spin needs is derived from three lines of arithmetic: the landing angle is the sum of the per-tick deltas, the duration is <code>v / 20 s</code>, and the selection is a modulo. That is why the whole physics could be asserted headlessly — and why the widget above can replay it in a browser at a fixed 100&nbsp;Hz, catching up with the wall clock in 10&nbsp;ms steps.</p>
+
+  <h3>Engineered, not just built</h3>
+  <ul>
+    <li><b>The wheel no longer rotates twice on resize</b> — the base image used to bake in the rotation <i>and</i> have it applied again at paint, desyncing pointer and selection; the renderer is now rotation-independent (<code>WheelPaintTest</code>).</li>
+    <li><b>The pointer survives repaints</b> — the tick polygon's scaling used to compound on every paint; geometry now returns a fresh, idempotent polygon (<code>TickMathTest</code>).</li>
+    <li><b>The sidebar keeps its width</b> — selecting a longer item name used to re-lay-out the frame and make the wheel jump (<code>MainWheelInfoPanelTest</code>).</li>
+    <li><b>Font auto-sizing is a binary search</b> — it replaced an O(n) re-rasterize loop and fixed a height-overflow edge on narrow sections.</li>
+    <li><b>No <code>Thread.sleep</code>, anywhere</b> — the spin rides a <code>javax.swing.Timer</code> on the EDT, a detached wheel stops its timer, and the tests synchronize on <code>CountDownLatch</code> callbacks instead of sleeping (<code>SelectionWheelIntegrationTest</code>).</li>
+  </ul>
+
+  <p class="muted">Coverage: pure layers 97–100&nbsp;%, overall 62.6&nbsp;% — the Swing views carry the remaining gap and there is no threshold gate yet. CI: every push runs <code>./mvnw -B verify</code> under xvfb on JDK 21, the Swing tests need a display. Source: <a href="https://github.com/daniilperkin-uni/pe1_selection_wheel">github.com/daniilperkin-uni/pe1_selection_wheel</a> (public).</p>
+</section>

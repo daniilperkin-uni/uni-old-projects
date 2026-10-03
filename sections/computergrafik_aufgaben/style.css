@@ -1,0 +1,14 @@
+/* Computergrafik — section styles */
+#computergrafik_aufgaben .p-owner{color:var(--accent-2);font-size:13px;margin:0 0 2px;font-weight:600;letter-spacing:.04em}
+/* live raytracer widget */
+#computergrafik_aufgaben .rt{display:flex;gap:20px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;align-items:flex-start}
+#computergrafik_aufgaben .rt-view{flex:0 1 460px;max-width:100%}
+#computergrafik_aufgaben .rt-view canvas{width:100%;display:block;border-radius:10px;border:1px solid var(--border);image-rendering:pixelated;background:#000}
+#computergrafik_aufgaben .rt-status{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:8px}
+#computergrafik_aufgaben .rt-side{flex:1 1 260px;min-width:240px}
+#computergrafik_aufgaben .rt-opt{display:flex;gap:9px;align-items:baseline;margin:6px 0;font-size:14px;cursor:pointer}
+#computergrafik_aufgaben .rt-opt small{color:var(--muted);font-size:12.5px}
+#computergrafik_aufgaben .rt-btn{display:inline-block;background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:7px 12px;font:inherit;font-size:13.5px;cursor:pointer;margin-top:6px}
+#computergrafik_aufgaben .rt-btn:hover{border-color:var(--accent)}
+#computergrafik_aufgaben .rt-btn:disabled{opacity:.55;cursor:default}
+#computergrafik_aufgaben .rt-note{color:var(--muted);font-size:13px;margin-top:10px}

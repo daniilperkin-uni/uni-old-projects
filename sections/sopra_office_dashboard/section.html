@@ -1,0 +1,68 @@
+<section class="project" id="sopra_office_dashboard">
+  <header class="p-head">
+    <p class="p-owner">@sopra · section live</p>
+    <h2>SoPra Office Dashboard</h2>
+    <p class="p-lede">A kiosk dashboard for the office — one full-screen 4K display rotating through calendar, parking, highscore, a combined overview and live weather, with an admin area behind it and a FallingCats easter egg on the side. Built as a university team project (Software-Praktikum): Spring Boot 4.1 multi-module backend, Vue 3 kiosk UI, MariaDB, Docker Compose.</p>
+    <p class="chips"><span class="chip">Java 21</span><span class="chip">Spring Boot 4.1.1</span><span class="chip">Gradle 9 · 7 modules</span><span class="chip">MariaDB · Liquibase</span><span class="chip">Vue 3.5 · Vite 7 · Pinia · Tailwind</span><span class="chip">Odoo XML-RPC · Open-Meteo · Mattermost</span><span class="chip">Docker Compose</span></p>
+  </header>
+
+  <h3>The kiosk — interactive replay</h3>
+  <div class="mount" id="kiosk-mount"></div>
+  <p class="caption">Every frame is a real capture from the running stack at <b>3840×2160</b> — the kiosk renders one fixed 4K canvas and a Smart Scaler transforms it to fit whatever screen it runs on, so this is the layout as designed. The live display rotates on a configurable interval (15 s default), cuts between views with no crossfade and re-reads its config every 30 s — this replay does the same, just faster. Switch to <b>Admin</b> for the screens behind the glass; click the stage to zoom a frame.</p>
+
+  <div class="kpis">
+    <div class="kpi"><b>93</b><span>backend tests green — JUnit 5 on H2</span></div>
+    <div class="kpi"><b>63</b><span>frontend tests green — Vitest, 10 files</span></div>
+    <div class="kpi"><b>7</b><span>Gradle modules behind one boot jar</span></div>
+    <div class="kpi"><b>3840×2160</b><span>one fixed 4K canvas, scaled to any screen</span></div>
+  </div>
+
+  <h3>The five views — and the office cats</h3>
+  <div class="strip">
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/display-calendar.png" alt="Kalender — three-week grid with birthday, anniversary and lunch chips" loading="lazy"><figcaption><b>Kalender</b> — a three-week grid fed from Odoo over XML-RPC: employee birthdays, work anniversaries, probation ends and community-lunch chips (fictional demo names).</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/display-parking.png" alt="Parking — occupancy per working day" loading="lazy"><figcaption><b>Parking</b> — the coming working days with occupancy bars (0/5 … 5/5), green to red as the office fills up; bookings are managed in the admin area.</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/display-highscore.png" alt="Highscore — darts and kicker leaderboards" loading="lazy"><figcaption><b>Highscore</b> — darts leaderboard (ELO-ranked) and kicker standings, with the latest match history beside them.</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/display-dashboard.png" alt="OneDisplay — calendar, parking and ranks combined" loading="lazy"><figcaption><b>OneDisplay</b> — the combined view: calendar, parking and top ranks on one screen (it can be skipped in the rotation).</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/display-weather.png" alt="Wetter — live Open-Meteo data" loading="lazy"><figcaption><b>Wetter</b> — live from Open-Meteo, no API key. Captured as-is: this view currently renders white text on a light card — a known contrast bug that sits on the repo's backlog.</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/display-game.jpg" alt="Game mode — falling cats, flappy cat, video wall" loading="lazy"><figcaption><b>Easter egg</b> — game mode: office cats rain down, a flappy cat dodges pipes and a Subway Surfers video runs alongside; a rotation interval of -1 boots straight into it.</figcaption></figure>
+  </div>
+
+  <h3>Behind the glass: the admin area</h3>
+  <p>Everything the kiosk shows is managed in a responsive Vue admin (<code>/admin/*</code>) — from a desktop or a phone, through the same REST API the display uses. The whole area sits behind a session login.</p>
+  <div class="strip">
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/admin-login.png" alt="Admin login" loading="lazy"><figcaption><b>Login</b> — everything under <code>/admin</code> requires a session.</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/admin-parking.png" alt="Parking admin — booking list" loading="lazy"><figcaption><b>Parken</b> — bookings per day with filters; create, edit and delete the reservations the kiosk shows.</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/admin-highscores.png" alt="Highscore admin — match management" loading="lazy"><figcaption><b>Highscores</b> — record and correct darts and kicker matches; standings and ELO recompute from these rows.</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/admin-lunch.png" alt="Lunch admin — events, options and votes" loading="lazy"><figcaption><b>Lunch</b> — community-lunch events with food catalog, options, votes and results; the DRAFT → OPEN → CLOSED lifecycle gates when voting runs.</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/admin-config.png" alt="Konfiguration — display and rotation settings" loading="lazy"><figcaption><b>Konfiguration</b> — rotation on/off, interval (minimum 5 s), skip OneDisplay and the view to pin when rotation is off — the display re-reads this every 30 s, no reload needed.</figcaption></figure>
+  </div>
+  <h3>Under the hood: seven modules, one app</h3>
+  <div class="grid-2">
+    <div class="card code"><pre>backend/ — Gradle 9 · Java 21 · Spring Boot 4.1.1
+common/                   Mattermost client + shared plumbing
+module-events/            Odoo XML-RPC → birthdays, anniversaries, probation
+module-parking/           reservations + daily occupancy
+module-highscore/         darts ELO + kicker standings
+module-community-lunches/ events, options, votes, food catalog
+module-config/            display + rotation settings
+backend/                  runnable app · session security · Liquibase master</pre></div>
+    <div class="card code"><pre>frontend/ — Vue 3.5 · Vite 7 · Pinia · Tailwind
+features/    calendar · parking · highscore · community-lunch · dashboard · game
+views/       DisplayView (the kiosk) · admin screens
+composables/ useDisplayScaler · useViewRotation</pre></div>
+  </div>
+  <p>One runnable jar, clean seams: every feature module owns its controllers, services, entities and changelog, and the schema is fully managed by Liquibase (<code>ddl-auto=validate</code>) — adding a module means registering it in <code>settings.gradle</code>, <code>build.gradle</code> and the master changelog, and applied changesets are never edited. Background work stays quiet: the events module caches Odoo and refreshes daily, and a 12:00 cron pushes upcoming birthdays, anniversaries and new lunch events into the team's Mattermost.</p>
+
+  <h3>Tests &amp; CI</h3>
+  <p>Every push runs the full pipeline: backend <code>./gradlew build</code> (compile · Checkstyle · 93 tests · boot jar) and frontend lint, format check, 63 Vitest tests and the production build on Node 22. The backend suite spans all seven modules — 91 run, the two <code>@Disabled</code> ones are the live-Odoo integration tests, kept runnable locally.</p>
+  <div class="grid-2">
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/ci-actions.png" alt="GitHub Actions — workflow runs on master, all green"><figcaption>CI on <code>master</code> — the newest runs on the CI page, all green; one workflow covers backend and frontend.</figcaption></figure>
+    <div class="card code"><pre>$ ./gradlew build      # backend — compile · Checkstyle · tests · boot jar
+$ npm run lint &amp;&amp; npm run format:check
+$ npm run test &amp;&amp; npm run build
+$ docker compose up -d --build
+  # MariaDB + API + kiosk in one command</pre></div>
+  </div>
+
+  <p class="muted">Source: <a href="https://github.com/daniilperkin-uni/sopra_office_dashboard">github.com/daniilperkin-uni/sopra_office_dashboard</a> (public). Captures are from the running Docker stack with fictional demo data — no real employee data.</p>
+</section>

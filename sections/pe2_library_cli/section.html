@@ -1,0 +1,56 @@
+<section class="project" id="pe2_library_cli">
+  <header class="p-head">
+    <p class="p-owner">@pe2-library-cli · section live</p>
+    <h2>PE2 Library CLI</h2>
+    <p class="p-lede">A German-language command-line library manager — rebuilt from a single 985-line file into a five-layer Maven project with a 108-test suite, a coverage gate and CI.</p>
+    <p class="chips"><span class="chip">Java 21</span><span class="chip">Maven</span><span class="chip">JUnit 5 · AssertJ</span><span class="chip">jacoco</span><span class="chip">GitHub Actions</span><span class="chip">terminal UI</span></p>
+  </header>
+
+  <script defer src="sections/pe2_library_cli/sessions.js"></script>
+  <div class="mount" id="term-mount"></div>
+  <p class="caption">Interactive replay of a real session recorded on this machine — output captured verbatim from the app: a loan, the double-loan guard, then a late return with the overdue fee. The second tab replays the ISBN reservation queue (Vormerkungen) with FIFO order and cancellation.</p>
+
+  <div class="kpis">
+    <div class="kpi"><b>108</b><span>tests green in <code>verify</code></span></div>
+    <div class="kpi"><b>80.75%</b><span>instruction coverage (jacoco gate)</span></div>
+    <div class="kpi"><b>985 → 13</b><span>files across 5 layers</span></div>
+    <div class="kpi"><b>6+</b><span>audited bugs fixed under test</span></div>
+  </div>
+  <div class="grid-2">
+    <figure class="shot">
+      <img src="sections/pe2_library_cli/assets/actions.png" alt="GitHub Actions — the verify workflow green on master">
+      <figcaption>CI on every push to <code>master</code>: <code>./mvnw -B verify</code> on JDK 21 — build, all 108 tests, coverage gate. The three latest runs, all green.</figcaption>
+    </figure>
+    <div class="card code">
+      <h3>The same command, locally</h3>
+      <pre>[INFO] Tests run: 108, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+[INFO] Total time:  4.831 s</pre>
+      <p class="muted">Verbatim output of <code>-B clean verify</code> on this machine — warm-cache fast, jacoco gate included. Reproduce: <code>./mvnw -B verify</code>.</p>
+    </div>
+  </div>
+
+  <h3>The refactor: one monolith → five layers</h3>
+  <div class="grid-2">
+    <div class="card code"><pre>LibraryCLI.java — 985 lines
+├─ menu + I/O
+├─ loan / return / fine math
+├─ CSV parsing via String.split(",")
+└─ reports</pre></div>
+    <div class="card code"><pre>cli/      menu + Scanner I/O (the only I/O layer)
+csv/      RFC-4180-subset parser · save on exit
+manager/  CRUD per entity + reservations
+service/  LoanService · ReportService (pure)
+model/    Book · BookCopy · Customer · Reservation</pre></div>
+  </div>
+  <p>Services never print — they throw typed exceptions and the CLI catches and renders them. The audited bugs from the original code are each pinned by a test: the loan guard order, return authorization, the naive CSV split, uncaught <code>InputMismatchException</code>, hardcoded fixture paths, plus deletion and startup guards.</p>
+
+  <h3>What it does</h3>
+  <ul>
+    <li><b>Nine-option German menu</b> — Bücher, Buchkopien, Kunden, Ausleihe, Rückgabe, Suche, Vormerkungen, Berichte, Beenden.</li>
+    <li><b>Loans on a real clock</b> — 21-day loan period, then 0.50 € per overdue day, itemized on return.</li>
+    <li><b>FIFO reservations per ISBN</b> — queue view and cancellation; the waiting list matters as soon as every copy of a title is out.</li>
+    <li><b>State that survives restarts</b> — saved on clean exit, reloaded on next start; quoted CSV fields and umlauts handled; corrupt saved data refuses to load instead of crashing.</li>
+  </ul>
+  <p class="muted">Source: <a href="https://github.com/daniilperkin-uni/pe2_library_cli">github.com/daniilperkin-uni/pe2_library_cli</a> (public).</p>
+</section>
