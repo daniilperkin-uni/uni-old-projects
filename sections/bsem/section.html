@@ -1,0 +1,45 @@
+<section class="project" id="bsem">
+  <header class="p-head">
+    <p class="p-owner">@bsem · section live</p>
+    <h2>BSEM — Annotation &amp; Dataset Audit</h2>
+    <p class="p-lede">A seminar team project on data-centric AI. Do annotators agree — and does talking about it help? 216 tweets, two annotators, one codebook and one expert: agreement before and after discussion (Bennett's S, Cohen's κ, Gwet's AC1), plus a 76-criterion audit of Microsoft COCO vs SA-1B.</p>
+    <p class="chips"><span class="chip">Python</span><span class="chip">Jupyter</span><span class="chip">pandas</span><span class="chip">matplotlib</span><span class="chip">Bennett's S · κ · AC1</span><span class="chip">COCO vs SA-1B</span></p>
+  </header>
+
+  <div class="kpis">
+    <div class="kpi"><b>216</b><span>tweets · 2 annotators · 7 batches</span></div>
+    <div class="kpi"><b>28</b><span>discussions (initial disagreements)</span></div>
+    <div class="kpi"><b>0.32 → 0.88</b><span>Cohen's κ, before → after discussion</span></div>
+    <div class="kpi"><b>76</b><span>criteria in the dataset audit</span></div>
+  </div>
+
+  <div class="grid-2">
+    <figure class="shot">
+      <img src="sections/bsem/assets/fig_agreement_pa_s.png" alt="Percentage agreement and Bennett's S before and after discussion">
+      <figcaption>Discussion closes the gap: percentage agreement 0.870 → 0.981, Bennett's S 0.741 → 0.963 (n = 216).</figcaption>
+    </figure>
+    <div class="card code">
+      <h3>Agreement before → after</h3>
+      <pre>metric   before   after
+PA       0.870    0.981
+S        0.741    0.963
+AC1      0.840    0.978
+kappa    0.321    0.885</pre>
+      <p class="muted">All four metrics move the same way. What remains after discussion are 4 expert decisions out of 216 rows (1.9%).</p>
+    </div>
+  </div>
+
+  <h3>What it shows</h3>
+  <ul>
+    <li><b>The prevalence paradox</b> — with rare positives κ collapses (0.32) while Bennett's S stays high (0.74) on identical labels. The simulations show why: guessing alone reaches S = 0.81 at 5% prevalence, while κ stays at 0 for pure guessing at any prevalence.</li>
+    <li><b>Against the original labels</b> — PA 91.7% (198/216), AC1 0.90 versus a trivial "never offensive" baseline of 0.89, κ 0.50: disagreement concentrates on the rare offensive cases, with a topical pattern (BLM missed, Elections 2020 over-labelled).</li>
+    <li><b>Dataset audit</b> — COCO vs SA-1B on 76 criteria across planning, sourcing, ethics, quality assurance and adjudication: COCO wins on semantics (categories per object), SA-1B on boundary quality (94% of mask pairs &gt; 90% IoU) but ships no categories at all.</li>
+  </ul>
+
+  <figure class="shot">
+    <img src="sections/bsem/assets/fig_prevalence_by_topic.png" alt="Offensiveness prevalence by topic, before and after discussion">
+    <figcaption>Offensiveness prevalence by topic — annotators' pre-discussion average vs final labels: Elections 2020 is the most offensive-heavy topic (16.7% → 14.7%), BLM the least (4.5% → 1.3%).</figcaption>
+  </figure>
+
+  <p class="muted">Source: <a href="https://github.com/daniilperkin-uni/bsem">github.com/daniilperkin-uni/bsem</a> — notebooks, data and slides.</p>
+</section>

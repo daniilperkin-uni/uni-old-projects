@@ -15,6 +15,13 @@
       "blurb": "A 4K kiosk cycling through calendar, parking, lunch, weather and FallingCats views, with an admin area behind it."
     },
     {
+      "id": "bsem",
+      "name": "BSEM Annotation Audit",
+      "owner": "@bsem",
+      "kind": "Python · Jupyter · annotation quality",
+      "blurb": "216 tweets, two annotators, one codebook: what discussion does to agreement (Bennett's S, κ, AC1) — plus a 76-criterion audit of COCO vs SA-1B."
+    },
+    {
       "id": "pe2_todo_app",
       "name": "PE2 Todo App",
       "owner": "@pe2-todo-app",
