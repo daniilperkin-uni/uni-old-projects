@@ -2,6 +2,7 @@
    Scoped to #sprintstart; shared tokens only. */
 
 /* ---------- click-through demo ---------- */
+#sprintstart .mount{margin-top:32px}
 #sprintstart .demo{margin:18px 0;outline:none}
 #sprintstart .demo:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:4px}
 #sprintstart .demo-frame{margin:0;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
