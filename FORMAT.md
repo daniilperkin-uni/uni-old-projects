@@ -11,7 +11,7 @@ Use the repo folder name as `<id>` (e.g. `pe2_todo_app`). Edit only your own fol
       script.js      optional — auto-loaded (deferred) after the shared site.js
       assets/        your images (png/jpg/webp); reference as sections/<id>/assets/....png
 
-`sections.json` already lists all six projects for the nav and placeholder cards — no edit needed: drop your `section.html` in, run `node build.mjs`, done.
+`sections.json` holds the project list for the nav and placeholder cards — a new project is one entry in it plus its folder: drop your `section.html` in, run `node build.mjs`, done.
 
 ## Look & feel
 

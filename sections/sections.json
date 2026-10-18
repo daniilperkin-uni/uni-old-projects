@@ -1,6 +1,13 @@
 {
   "projects": [
     {
+      "id": "sprintstart",
+      "name": "SprintStart",
+      "owner": "@sprintstart",
+      "kind": "React · Spring Boot · FastAPI · RAG",
+      "blurb": "An AI-assisted onboarding platform: connect a GitHub org, ingest every PR, issue, file and uploaded document, and make it all searchable, citable and summarizable — with an onboarding buddy on top."
+    },
+    {
       "id": "sopra_office_dashboard",
       "name": "SoPra Office Dashboard",
       "owner": "@sopra",
