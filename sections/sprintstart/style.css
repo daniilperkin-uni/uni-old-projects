@@ -68,3 +68,29 @@
 /* ---------- tight lists ---------- */
 #sprintstart ul.tight{margin:6px 0;padding-left:20px}
 #sprintstart ul.tight li{margin:2px 0}
+
+/* ---------- what I built ---------- */
+#sprintstart .mine{margin:22px 0 8px}
+#sprintstart .mine h3{margin:0 0 6px}
+#sprintstart .mine-body{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:26px 34px;margin-top:16px;align-items:start}
+#sprintstart .mine-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px 20px}
+#sprintstart .mine-stats b{display:block;font-family:var(--mono);font-size:22px;line-height:1.1;letter-spacing:-.01em}
+#sprintstart .mine-stats b i{font-style:normal;color:var(--muted);font-weight:500}
+#sprintstart .mine-stats span{display:block;margin-top:4px;font-size:12.5px;line-height:1.35;color:var(--muted)}
+#sprintstart .mine-charts{display:grid;gap:18px}
+#sprintstart .mine-charts figure{margin:0}
+#sprintstart .mine-charts figcaption{font-size:12.5px;color:var(--muted);margin-bottom:10px;line-height:1.35}
+#sprintstart .mine-sprints .bars{display:flex;align-items:flex-end;gap:7px;height:110px;padding-top:18px}
+#sprintstart .mine-sprints .bars i{flex:1;height:var(--h);min-height:5px;background:color-mix(in srgb,var(--accent) 52%,transparent);border-radius:3px 3px 0 0;position:relative}
+#sprintstart .mine-sprints .bars i em{position:absolute;top:-15px;left:0;right:0;text-align:center;font-style:normal;font-size:10.5px;color:var(--muted)}
+#sprintstart .mine-sprints .labels{display:flex;gap:7px;margin-top:6px;border-top:1px solid var(--border);padding-top:5px}
+#sprintstart .mine-sprints .labels span{flex:1;text-align:center;font-family:var(--mono);font-size:10px;color:var(--muted)}
+#sprintstart .mine-repos ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+#sprintstart .mine-repos li{display:grid;grid-template-columns:118px minmax(0,1fr) 28px;align-items:center;gap:10px}
+#sprintstart .mine-repos li span{font-family:var(--mono);font-size:11.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#sprintstart .mine-repos li i{display:block;height:8px;width:var(--w);background:color-mix(in srgb,var(--accent) 52%,transparent);border-radius:2px}
+#sprintstart .mine-repos li b{font-family:var(--mono);font-size:12px;text-align:right;font-weight:500}
+@media(max-width:760px){
+  #sprintstart .mine-body{grid-template-columns:minmax(0,1fr)}
+  #sprintstart .mine-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
