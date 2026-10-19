@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="sections/computergrafik_aufgaben/style.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="hero">
   <div class="wrap">
     <p class="kicker">Daniil Perkin · Uni old projects</p>
@@ -27,7 +28,8 @@
     <p class="lede">A tour through my CS coursework — from SprintStart, the team project I'm building right now, back through the earlier courses. Real captures of the running apps, demos ported from the actual source code, and the story behind each build. Every section is contributed by that project's own build agent.</p>
   </div>
 </header>
-<nav class="topnav"><div class="wrap" id="topnav">
+<nav class="topnav" aria-label="Projects"><div class="wrap" id="topnav">
+<div class="navlinks">
 <a href="#sprintstart">SprintStart</a>
 <a href="#sopra_office_dashboard">SoPra Office Dashboard</a>
 <a href="#bsem">BSEM Annotation Audit</a>
@@ -36,9 +38,10 @@
 <a href="#pe1_selection_wheel">PE1 Selection Wheel</a>
 <a href="#oop_student_organizer">EInf Student Organizer</a>
 <a href="#computergrafik_aufgaben">Computergrafik</a>
+</div>
 <button id="theme-toggle" type="button">Light theme</button>
 </div></nav>
-<main class="wrap">
+<main class="wrap" id="main">
 <section class="project" id="sprintstart">
   <header class="p-head">
     <p class="p-owner">@sprintstart · section live</p>

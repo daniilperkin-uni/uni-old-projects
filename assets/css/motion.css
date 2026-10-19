@@ -27,7 +27,7 @@ html.uop-anim .rvw.in .p-head::after{transform:scaleX(1)}
 html.uop-anim .rvw.in .p-head::before{opacity:1}
 
 /* ---------- sticky section titles (dossier tabs) ---------- */
-html.uop-anim main .project h2.stick{position:sticky;top:58px;z-index:6;display:inline-block;padding:5px 12px;margin-left:-12px;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(6px);border:1px solid var(--border);border-radius:10px;font-size:clamp(19px,2.4vw,24px)}
+html.uop-anim main .project h2.stick{position:sticky;top:calc(var(--nav-h, 56px) + 8px);z-index:6;display:inline-block;padding:5px 12px;margin-left:-12px;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(6px);border:1px solid var(--border);border-radius:10px;font-size:clamp(19px,2.4vw,24px)}
 html.uop-anim main .project h2.stick::after{content:"";position:absolute;left:10px;right:10px;bottom:4px;height:2px;border-radius:2px;background:var(--accent-2);transform:scaleX(var(--sp,0));transform-origin:left}
 
 /* ---------- parallax + crosshair corners on captures ---------- */
@@ -49,6 +49,10 @@ html.uop-anim .hero .wrap{will-change:transform,opacity}
 html.uop-anim .kpi b{font-variant-numeric:tabular-nums}
 
 /* ---------- hard guards ---------- */
+@media (max-width:640px){
+  /* the scroll cue overlaps the lede once the hero text wraps on a phone */
+  .hero .cue{display:none}
+}
 @media (prefers-reduced-motion: reduce){
   .hero .cue i{animation:none}
   html.uop-anim .rv,html.uop-anim .rvw h2{opacity:1;transform:none;clip-path:none}

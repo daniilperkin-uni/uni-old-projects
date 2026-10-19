@@ -1,15 +1,21 @@
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
 a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline}
+img,svg,video,canvas{max-width:100%;height:auto}
 h1{font-size:clamp(30px,4.4vw,46px);line-height:1.12;margin:.25em 0 .35em}
 h2{font-size:clamp(22px,3vw,30px);margin:0 0 .35em}
 h3{font-size:17px;margin:0 0 .5em}
 p{margin:.45em 0}
 pre,code{font-family:var(--mono)}
 code{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:1px 5px;font-size:.88em}
+/* visible keyboard focus everywhere (mouse clicks stay clean) */
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+/* skip link — first tab stop, hidden until focused */
+.skip{position:absolute;left:12px;top:-64px;z-index:200;background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:10px 14px;transition:top .15s ease}
+.skip:focus{top:12px}
 .hero{padding:84px 0 46px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,var(--surface) 0%,transparent 100%)}
 .kicker{color:var(--accent-2);font-weight:600;letter-spacing:.09em;text-transform:uppercase;font-size:12px;margin:0}
 .lede{font-size:19px;color:var(--muted);max-width:74ch}
@@ -17,3 +23,15 @@ code{background:var(--surface2);border:1px solid var(--border);border-radius:6px
 .p-lede{font-size:17px;color:var(--muted);max-width:78ch}
 .caption{color:var(--muted);font-size:13.5px;margin-top:10px}
 .footer{border-top:1px solid var(--border);margin-top:8px;padding:30px 0 44px;color:var(--muted);font-size:14px}
+/* phone: tighter gutters, shorter hero, readable lede */
+@media(max-width:640px){
+  .wrap{padding:0 16px}
+  .hero{padding:52px 0 30px}
+  .lede{font-size:17px}
+  .project{padding:40px 0}
+  .footer{padding:26px 0 36px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .skip{transition:none}
+}

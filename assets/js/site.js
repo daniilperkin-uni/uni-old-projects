@@ -41,7 +41,11 @@
   }
   var btn = document.getElementById('theme-toggle');
   if (btn) {
-    var sync = function () { btn.textContent = html.dataset.theme === 'dark' ? 'Light theme' : 'Dark theme'; };
+    var sync = function () {
+      var dark = html.dataset.theme === 'dark';
+      btn.textContent = dark ? 'Light theme' : 'Dark theme';
+      btn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    };
     sync();
     btn.addEventListener('click', function () {
       var next = html.dataset.theme === 'dark' ? 'light' : 'dark';

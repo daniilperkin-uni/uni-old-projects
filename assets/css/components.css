@@ -1,12 +1,26 @@
 /* top navigation */
 .topnav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
-.topnav .wrap{display:flex;gap:16px;align-items:center;flex-wrap:wrap;padding:10px 24px}
-.topnav a{color:var(--muted);text-decoration:none;font-size:14px}
+.topnav .wrap{display:flex;gap:10px;align-items:center;flex-wrap:nowrap;padding:8px 24px}
+/* one row on every width: the link strip scrolls horizontally, the toggle stays put */
+.navlinks{display:flex;align-items:center;gap:16px;flex:1 1 auto;min-width:0;overflow-x:auto;white-space:nowrap;scrollbar-width:none;-ms-overflow-style:none;padding:2px 0}
+.navlinks::-webkit-scrollbar{display:none}
+.topnav a{color:var(--muted);text-decoration:none;font-size:14px;display:inline-flex;align-items:center;min-height:40px;flex:none}
 .topnav a:hover{color:var(--text)}
 .topnav a.dim{opacity:.55}
-#theme-toggle{margin-left:auto;background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;font:inherit;font-size:13px}
+#theme-toggle{margin-left:auto;flex:none;background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;font:inherit;font-size:13px}
+@media(min-width:900px){
+  /* desktop has room: wrap instead of hiding links behind a scroll */
+  .navlinks{flex-wrap:wrap;overflow:visible;white-space:normal}
+  .topnav .wrap{padding:6px 24px}
+  .topnav a{min-height:34px}
+}
 /* anchor offset for the sticky nav (--nav-h is set by site.js) */
 section.project{scroll-margin-top:calc(var(--nav-h, 96px) + 14px)}
+@media(max-width:640px){
+  .topnav .wrap{padding:6px 16px}
+  .navlinks{gap:14px}
+  .topnav a{min-height:44px}
+}
 /* chips */
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
 .chip{background:var(--surface2);border:1px solid var(--border);color:var(--muted);border-radius:999px;padding:3px 10px;font-size:12.5px}
