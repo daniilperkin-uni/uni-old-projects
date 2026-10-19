@@ -1,6 +1,44 @@
 /* shared site behaviour: theme toggle, lightbox, before/after sliders */
 (function () {
   var html = document.documentElement;
+  /* expose the sticky nav height so anchor jumps land below it */
+  var nav = document.querySelector('.topnav');
+  var syncNavH = function () {
+    if (nav) { html.style.setProperty('--nav-h', nav.offsetHeight + 'px'); }
+  };
+  syncNavH();
+  window.addEventListener('resize', syncNavH);
+  /* nav jumps: land below the sticky nav, then correct for images that load mid-scroll */
+  function landOn(target, href) {
+    var tries = 0;
+    (function correct() {
+      var navH = nav ? nav.offsetHeight : 0;
+      var delta = target.getBoundingClientRect().top - (navH + 14);
+      if (Math.abs(delta) > 4 && tries < 10) {
+        tries += 1;
+        try {
+          window.scrollTo({ top: window.scrollY + delta, behavior: 'instant' });
+        } catch (e) {
+          window.scrollTo(0, window.scrollY + delta);
+        }
+        setTimeout(correct, 160);
+        return;
+      }
+      if (history.replaceState) { history.replaceState(null, '', href); }
+    })();
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.topnav a[href^="#"]'), function (a) {
+    a.addEventListener('click', function (ev) {
+      var target = document.getElementById(a.getAttribute('href').slice(1));
+      if (!target) { return; }
+      ev.preventDefault();
+      landOn(target, a.getAttribute('href'));
+    });
+  });
+  if (location.hash) {
+    var initial = document.getElementById(location.hash.slice(1));
+    if (initial) { setTimeout(function () { landOn(initial, location.hash); }, 600); }
+  }
   var btn = document.getElementById('theme-toggle');
   if (btn) {
     var sync = function () { btn.textContent = html.dataset.theme === 'dark' ? 'Light theme' : 'Dark theme'; };
