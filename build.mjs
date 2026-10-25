@@ -40,5 +40,24 @@ html = html.split('<!-- @NAV@ -->').join(nav.join('\n'));
 html = html.split('<!-- @SECTIONS@ -->').join(parts.join('\n'));
 html = html.split('<!-- @SECTION_STYLES@ -->').join(styles.join('\n'));
 html = html.split('<!-- @SECTION_SCRIPTS@ -->').join(scripts.join('\n'));
+
+/* Contact links come from shell/contact.json so the hero and the footer stay in
+   sync - one edit, both places. An empty/missing file simply renders nothing. */
+const contactFile = join(root, 'shell', 'contact.json');
+if (existsSync(contactFile)) {
+  const contact = JSON.parse(readFileSync(contactFile, 'utf8'));
+  const links = (contact.links || []).map((l) => {
+    const rel = l.external ? ' target="_blank" rel="me noopener"' : '';
+    return `<a class="contact-link" href="${esc(l.href)}"${rel}>${esc(l.label)}</a>`;
+  });
+  if (links.length) {
+    const lead = contact.lead ? `<span class="contact-lead">${esc(contact.lead)}</span>` : '';
+    html = html.split('<!-- @CONTACT@ -->').join(`<p class="contact-links">${lead}${links.join('')}</p>`);
+    html = html.split('<!-- @CONTACT_FOOTER@ -->').join(`<p class="contact-links contact-links--footer">${links.join('')}</p>`);
+  }
+}
+html = html.split('<!-- @CONTACT@ -->').join('');
+html = html.split('<!-- @CONTACT_FOOTER@ -->').join('');
+
 writeFileSync(join(root, 'index.html'), html);
 console.log(`built index.html - ${conf.projects.length} sections, ${live} live, ${conf.projects.length - live} placeholder`);

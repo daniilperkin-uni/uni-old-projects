@@ -1,0 +1,9 @@
+{
+  "_comment": "Contact links shown in the hero and the footer. Keep href values absolute; mailto: is fine. Remove an entry to hide that channel.",
+  "lead": "Get in touch:",
+  "links": [
+    { "label": "Email", "href": "mailto:daniilperkin2004@gmail.com", "external": false },
+    { "label": "LinkedIn", "href": "https://www.linkedin.com/in/daniil-perkin-87b980446/", "external": true },
+    { "label": "GitHub", "href": "https://github.com/daniilperkin", "external": true }
+  ]
+}
