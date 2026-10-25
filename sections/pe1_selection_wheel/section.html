@@ -20,25 +20,25 @@
   <p>Captured from the real app on this machine (<code>java -cp target/classes selectionwheel.MainWheel</code>): at rest, mid-spin at two speeds, after coming to rest, and the runtime file-loading dialog.</p>
   <div class="grid-2">
     <figure class="shot">
-      <img src="sections/pe1_selection_wheel/assets/app-idle.png" alt="Selection Wheel app at rest: the wheel with black borders, the Info panel and the Spin / Load list buttons">
+      <img src="sections/pe1_selection_wheel/assets/app-idle.webp" alt="Selection Wheel app at rest: the wheel with black borders, the Info panel and the Spin / Load list buttons" width="1268" height="777" decoding="async" loading="lazy">
       <figcaption>At rest — 15 sections from the bundled <code>itemlist.txt</code>, borders on, the Info panel showing Selection / Angle / Speed, result bar idling on “Spin the wheel!”.</figcaption>
     </figure>
     <figure class="shot">
-      <img src="sections/pe1_selection_wheel/assets/app-result.png" alt="Selection Wheel app just after a spin ended, result bar showing the selection">
+      <img src="sections/pe1_selection_wheel/assets/app-result.webp" alt="Selection Wheel app just after a spin ended, result bar showing the selection" width="1268" height="777" decoding="async" loading="lazy">
       <figcaption>Landed — this spin came to rest at −165.1° (German number format, as on this machine): <code>floor(15 + (−165.1 % 360) / 24) % 15 = 8</code> → “Rat”, exactly the wedge under the pointer. The inline result bar names it; no modal dialog ever blocks the flow.</figcaption>
     </figure>
   </div>
   <div class="strip">
     <figure class="shot">
-      <img src="sections/pe1_selection_wheel/assets/app-spin-fast.png" alt="Selection Wheel app early in a spin: button disabled, Spinning… shown">
+      <img src="sections/pe1_selection_wheel/assets/app-spin-fast.webp" alt="Selection Wheel app early in a spin: button disabled, Spinning… shown" width="1268" height="777" decoding="async" loading="lazy">
       <figcaption>Early in a random spin — the speed readout sits at 268 °/s and is decaying, the Spin button is disabled and the bar reads “Spinning…”.</figcaption>
     </figure>
     <figure class="shot">
-      <img src="sections/pe1_selection_wheel/assets/app-spin-slow.png" alt="Selection Wheel app late in a spin: low speed readout">
+      <img src="sections/pe1_selection_wheel/assets/app-spin-slow.webp" alt="Selection Wheel app late in a spin: low speed readout" width="1268" height="777" decoding="async" loading="lazy">
       <figcaption>A few seconds into the same spin — down to 197 °/s, with <code>v&sup2; / 2a &asymp; 970&deg;</code> (2.7 more turns) of deceleration still ahead.</figcaption>
     </figure>
     <figure class="shot">
-      <img src="sections/pe1_selection_wheel/assets/app-load-dialog.png" alt="JFileChooser dialog for loading a custom item list">
+      <img src="sections/pe1_selection_wheel/assets/app-load-dialog.png" alt="JFileChooser dialog for loading a custom item list" width="501" height="356" decoding="async" loading="lazy">
       <figcaption>“Load list…” — a UTF-8 text file (one item per line, up to 100) replaces the wheel's items at runtime; invalid files are reported and leave the wheel unchanged.</figcaption>
     </figure>
   </div>
@@ -47,11 +47,11 @@
   <p>The renderer was extracted so it can paint into a <code>BufferedImage</code> with no window involved — the images below come straight from <code>WheelRenderer.render(model, 1200, 1200)</code>. It is deliberately rotation-independent: the model's angle is applied by the component at paint time, so the cached image stays valid while the wheel turns.</p>
   <div class="strip">
     <figure class="shot">
-      <img src="sections/pe1_selection_wheel/assets/renderer-circle.png" alt="Wheel rendered at 1200 pixels, circle shape with the default 12-color palette">
+      <img src="sections/pe1_selection_wheel/assets/renderer-circle.webp" alt="Wheel rendered at 1200 pixels, circle shape with the default 12-color palette" width="1200" height="1200" decoding="async" loading="lazy">
       <figcaption>The default <code>CIRCLE</code> shape, 15 sections — this exact frame also seeds the canvas widget above.</figcaption>
     </figure>
     <figure class="shot">
-      <img src="sections/pe1_selection_wheel/assets/renderer-umbrella.png" alt="Wheel rendered at 1200 pixels in the umbrella shape">
+      <img src="sections/pe1_selection_wheel/assets/renderer-umbrella.webp" alt="Wheel rendered at 1200 pixels in the umbrella shape" width="1200" height="1200" decoding="async" loading="lazy">
       <figcaption>The same renderer in the library's second shape, <code>UMBRELLA</code> — <code>setShape(Wheel.Shape.UMBRELLA)</code> swaps the fill geometry, everything else is shared.</figcaption>
     </figure>
   </div>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Uni old projects">
+  <rect width="64" height="64" rx="14" fill="#0b0e14"/>
+  <g transform="translate(32 32)">
+    <path d="M0 0 L0 -22 A22 22 0 0 1 22 0 Z" fill="#7c9cff"/>
+    <path d="M0 0 L22 0 A22 22 0 0 1 0 22 Z" fill="#4ecdc4"/>
+    <path d="M0 0 L0 22 A22 22 0 0 1 -22 0 Z" fill="#ffb454"/>
+    <path d="M0 0 L-22 0 A22 22 0 0 1 0 -22 Z" fill="#5cd68a"/>
+    <circle r="5" fill="#0b0e14"/>
+  </g>
+</svg>

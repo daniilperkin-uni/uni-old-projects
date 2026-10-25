@@ -11,19 +11,19 @@
   var A = 'sections/sopra_office_dashboard/assets/';
   var GROUPS = {
     kiosk: [
-      { file: 'display-calendar.png', label: 'Kalender', desc: 'Three-week grid fed from Odoo — birthdays, work anniversaries, probation ends and community-lunch chips (demo names).' },
-      { file: 'display-parking.png', label: 'Parking', desc: 'The coming working days with occupancy bars (0/5 … 5/5), green to red as the office fills up.' },
-      { file: 'display-highscore.png', label: 'Highscore', desc: 'Darts leaderboard with ELO and kicker standings, plus the latest match results.' },
-      { file: 'display-dashboard.png', label: 'OneDisplay', desc: 'The combined view — calendar, parking and top ranks on one screen.' },
+      { file: 'display-calendar.webp', label: 'Kalender', desc: 'Three-week grid fed from Odoo — birthdays, work anniversaries, probation ends and community-lunch chips (demo names).' },
+      { file: 'display-parking.webp', label: 'Parking', desc: 'The coming working days with occupancy bars (0/5 … 5/5), green to red as the office fills up.' },
+      { file: 'display-highscore.webp', label: 'Highscore', desc: 'Darts leaderboard with ELO and kicker standings, plus the latest match results.' },
+      { file: 'display-dashboard.webp', label: 'OneDisplay', desc: 'The combined view — calendar, parking and top ranks on one screen.' },
       { file: 'display-weather.png', label: 'Wetter', desc: 'Live from Open-Meteo, no API key. Captured as-is — this view has a known contrast bug (white on light), on the repo backlog.' },
-      { file: 'display-game.jpg', label: 'Games', desc: 'Easter egg — office cats fall, a flappy cat flies, a Subway Surfers video runs. Bootable via interval -1.' }
+      { file: 'display-game.webp', label: 'Games', desc: 'Easter egg — office cats fall, a flappy cat flies, a Subway Surfers video runs. Bootable via interval -1.' }
     ],
     admin: [
       { file: 'admin-login.png', label: 'Login', desc: 'Everything under /admin requires a session.' },
-      { file: 'admin-parking.png', label: 'Parken', desc: 'Bookings per day — create, edit, delete; the kiosk reads the same rows.' },
-      { file: 'admin-highscores.png', label: 'Highscores', desc: 'Record and correct darts and kicker matches; standings and ELO follow.' },
-      { file: 'admin-lunch.png', label: 'Lunch', desc: 'Community lunches with food catalog, options and votes — DRAFT → OPEN → CLOSED gates the voting.' },
-      { file: 'admin-config.png', label: 'Konfiguration', desc: 'Rotation on/off, interval (min 5 s), skip OneDisplay, pinned view — re-read by the display every 30 s.' }
+      { file: 'admin-parking.webp', label: 'Parken', desc: 'Bookings per day — create, edit, delete; the kiosk reads the same rows.' },
+      { file: 'admin-highscores.webp', label: 'Highscores', desc: 'Record and correct darts and kicker matches; standings and ELO follow.' },
+      { file: 'admin-lunch.webp', label: 'Lunch', desc: 'Community lunches with food catalog, options and votes — DRAFT → OPEN → CLOSED gates the voting.' },
+      { file: 'admin-config.webp', label: 'Konfiguration', desc: 'Rotation on/off, interval (min 5 s), skip OneDisplay, pinned view — re-read by the display every 30 s.' }
     ]
   };
   var INTERVAL = 4000;

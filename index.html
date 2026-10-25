@@ -4,7 +4,27 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Uni old projects — Daniil Perkin</title>
-<link rel="icon" href="data:,">
+<meta name="description" content="Interactive tour of eight university CS projects — SprintStart, SoPra Office Dashboard, BSEM, PE2 Todo, PE2 Library CLI, PE1 Selection Wheel, EInf Student Organizer and Computergrafik. Real captures of the running apps and demos ported from the source code.">
+<meta name="author" content="Daniil Perkin">
+<meta name="theme-color" content="#0b0e14">
+<link rel="canonical" href="https://daniilperkin-uni.github.io/uni-old-projects/">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/og-card.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Daniil Perkin — Uni old projects">
+<meta property="og:title" content="Eight university projects, one interactive site.">
+<meta property="og:description" content="Real captures of the running apps, demos ported from the actual source code, and the story behind each build — SprintStart, SoPra, BSEM, PE2, PE1, EInf and Computergrafik.">
+<meta property="og:url" content="https://daniilperkin-uni.github.io/uni-old-projects/">
+<meta property="og:image" content="https://daniilperkin-uni.github.io/uni-old-projects/assets/og-card.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Daniil Perkin — eight university projects, one interactive site">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Eight university projects, one interactive site.">
+<meta name="twitter:description" content="Real captures of the running apps, demos ported from the source code, and the story behind each build.">
+<meta name="twitter:image" content="https://daniilperkin-uni.github.io/uni-old-projects/assets/og-card.png">
 <script>(function(){try{var t=localStorage.getItem('uop-theme');if(t==='light'||t==='dark'){document.documentElement.dataset.theme=t}else if(window.matchMedia('(prefers-color-scheme: light)').matches){document.documentElement.dataset.theme='light'}}catch(e){}})();</script>
 <link rel="stylesheet" href="assets/css/tokens.css">
 <link rel="stylesheet" href="assets/css/base.css">
@@ -25,7 +45,7 @@
   <div class="wrap">
     <p class="kicker">Daniil Perkin · Uni old projects</p>
     <h1>Eight university projects, one interactive site.</h1>
-    <p class="lede">A tour through my CS coursework — from SprintStart, the team project I'm building right now, back through the earlier courses. Real captures of the running apps, demos ported from the actual source code, and the story behind each build. Every section is contributed by that project's own build agent.</p>
+    <p class="lede">A tour through my CS coursework — from SprintStart, the team project I'm building right now, back through the earlier courses. Real captures of the running apps, demos ported from the actual source code, and the story behind each build. Every section was built with an AI coding agent working inside that project's own repository — I set the scope, reviewed the work and kept the numbers honest.</p>
   </div>
 </header>
 <nav class="topnav" aria-label="Projects"><div class="wrap" id="topnav">
@@ -188,22 +208,22 @@ export const KB_URL_PARAM = {
 
   <h3>The five views — and the office cats</h3>
   <div class="strip">
-    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/display-calendar.png" alt="Kalender — three-week grid with birthday, anniversary and lunch chips" loading="lazy"><figcaption><b>Kalender</b> — a three-week grid fed from Odoo over XML-RPC: employee birthdays, work anniversaries, probation ends and community-lunch chips (fictional demo names).</figcaption></figure>
-    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/display-parking.png" alt="Parking — occupancy per working day" loading="lazy"><figcaption><b>Parking</b> — the coming working days with occupancy bars (0/5 … 5/5), green to red as the office fills up; bookings are managed in the admin area.</figcaption></figure>
-    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/display-highscore.png" alt="Highscore — darts and kicker leaderboards" loading="lazy"><figcaption><b>Highscore</b> — darts leaderboard (ELO-ranked) and kicker standings, with the latest match history beside them.</figcaption></figure>
-    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/display-dashboard.png" alt="OneDisplay — calendar, parking and ranks combined" loading="lazy"><figcaption><b>OneDisplay</b> — the combined view: calendar, parking and top ranks on one screen (it can be skipped in the rotation).</figcaption></figure>
-    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/display-weather.png" alt="Wetter — live Open-Meteo data" loading="lazy"><figcaption><b>Wetter</b> — live from Open-Meteo, no API key. Captured as-is: this view currently renders white text on a light card — a known contrast bug that sits on the repo's backlog.</figcaption></figure>
-    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/display-game.jpg" alt="Game mode — falling cats, flappy cat, video wall" loading="lazy"><figcaption><b>Easter egg</b> — game mode: office cats rain down, a flappy cat dodges pipes and a Subway Surfers video runs alongside; a rotation interval of -1 boots straight into it.</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/display-calendar.webp" alt="Kalender — three-week grid with birthday, anniversary and lunch chips" loading="lazy" width="1600" height="900" decoding="async"><figcaption><b>Kalender</b> — a three-week grid fed from Odoo over XML-RPC: employee birthdays, work anniversaries, probation ends and community-lunch chips (fictional demo names).</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/display-parking.webp" alt="Parking — occupancy per working day" loading="lazy" width="1600" height="900" decoding="async"><figcaption><b>Parking</b> — the coming working days with occupancy bars (0/5 … 5/5), green to red as the office fills up; bookings are managed in the admin area.</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/display-highscore.webp" alt="Highscore — darts and kicker leaderboards" loading="lazy" width="1600" height="900" decoding="async"><figcaption><b>Highscore</b> — darts leaderboard (ELO-ranked) and kicker standings, with the latest match history beside them.</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/display-dashboard.webp" alt="OneDisplay — calendar, parking and ranks combined" loading="lazy" width="1600" height="900" decoding="async"><figcaption><b>OneDisplay</b> — the combined view: calendar, parking and top ranks on one screen (it can be skipped in the rotation).</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/display-weather.png" alt="Wetter — live Open-Meteo data" loading="lazy" width="3840" height="2160" decoding="async"><figcaption><b>Wetter</b> — live from Open-Meteo, no API key. Captured as-is: this view currently renders white text on a light card — a known contrast bug that sits on the repo's backlog.</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/display-game.webp" alt="Game mode — falling cats, flappy cat, video wall" loading="lazy" width="1600" height="900" decoding="async"><figcaption><b>Easter egg</b> — game mode: office cats rain down, a flappy cat dodges pipes and a Subway Surfers video runs alongside; a rotation interval of -1 boots straight into it.</figcaption></figure>
   </div>
 
   <h3>Behind the glass: the admin area</h3>
   <p>Everything the kiosk shows is managed in a responsive Vue admin (<code>/admin/*</code>) — from a desktop or a phone, through the same REST API the display uses. The whole area sits behind a session login.</p>
   <div class="strip">
-    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/admin-login.png" alt="Admin login" loading="lazy"><figcaption><b>Login</b> — everything under <code>/admin</code> requires a session.</figcaption></figure>
-    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/admin-parking.png" alt="Parking admin — booking list" loading="lazy"><figcaption><b>Parken</b> — bookings per day with filters; create, edit and delete the reservations the kiosk shows.</figcaption></figure>
-    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/admin-highscores.png" alt="Highscore admin — match management" loading="lazy"><figcaption><b>Highscores</b> — record and correct darts and kicker matches; standings and ELO recompute from these rows.</figcaption></figure>
-    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/admin-lunch.png" alt="Lunch admin — events, options and votes" loading="lazy"><figcaption><b>Lunch</b> — community-lunch events with food catalog, options, votes and results; the DRAFT → OPEN → CLOSED lifecycle gates when voting runs.</figcaption></figure>
-    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/admin-config.png" alt="Konfiguration — display and rotation settings" loading="lazy"><figcaption><b>Konfiguration</b> — rotation on/off, interval (minimum 5 s), skip OneDisplay and the view to pin when rotation is off — the display re-reads this every 30 s, no reload needed.</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/admin-login.png" alt="Admin login" loading="lazy" width="3840" height="2160" decoding="async"><figcaption><b>Login</b> — everything under <code>/admin</code> requires a session.</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/admin-parking.webp" alt="Parking admin — booking list" loading="lazy" width="1600" height="900" decoding="async"><figcaption><b>Parken</b> — bookings per day with filters; create, edit and delete the reservations the kiosk shows.</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/admin-highscores.webp" alt="Highscore admin — match management" loading="lazy" width="1600" height="900" decoding="async"><figcaption><b>Highscores</b> — record and correct darts and kicker matches; standings and ELO recompute from these rows.</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/admin-lunch.webp" alt="Lunch admin — events, options and votes" loading="lazy" width="1600" height="900" decoding="async"><figcaption><b>Lunch</b> — community-lunch events with food catalog, options, votes and results; the DRAFT → OPEN → CLOSED lifecycle gates when voting runs.</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/admin-config.webp" alt="Konfiguration — display and rotation settings" loading="lazy" width="1600" height="900" decoding="async"><figcaption><b>Konfiguration</b> — rotation on/off, interval (minimum 5 s), skip OneDisplay and the view to pin when rotation is off — the display re-reads this every 30 s, no reload needed.</figcaption></figure>
   </div>
   <h3>Under the hood: seven modules, one app</h3>
   <div class="grid-2">
@@ -225,7 +245,7 @@ composables/ useDisplayScaler · useViewRotation</pre></div>
   <h3>Tests &amp; CI</h3>
   <p>Every push runs the full pipeline: backend <code>./gradlew build</code> (compile · Checkstyle · 93 tests · boot jar) and frontend lint, format check, 63 Vitest tests and the production build on Node 22. The backend suite spans all seven modules — 91 run, the two <code>@Disabled</code> ones are the live-Odoo integration tests, kept runnable locally.</p>
   <div class="grid-2">
-    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/ci-actions.png" alt="GitHub Actions — workflow runs on master, all green"><figcaption>CI on <code>master</code> — the newest runs on the CI page, all green; one workflow covers backend and frontend.</figcaption></figure>
+    <figure class="shot"><img src="sections/sopra_office_dashboard/assets/ci-actions.webp" alt="GitHub Actions — workflow runs on master, all green" width="1600" height="1120" decoding="async" loading="lazy"><figcaption>CI on <code>master</code> — the newest runs on the CI page, all green; one workflow covers backend and frontend.</figcaption></figure>
     <div class="card code"><pre>$ ./gradlew build      # backend — compile · Checkstyle · tests · boot jar
 $ npm run lint &amp;&amp; npm run format:check
 $ npm run test &amp;&amp; npm run build
@@ -252,7 +272,7 @@ $ docker compose up -d --build
 
   <div class="grid-2">
     <figure class="shot">
-      <img src="sections/bsem/assets/fig_agreement_pa_s.png" alt="Percentage agreement and Bennett's S before and after discussion">
+      <img src="sections/bsem/assets/fig_agreement_pa_s.png" alt="Percentage agreement and Bennett's S before and after discussion" width="1236" height="904" decoding="async" loading="eager">
       <figcaption>Discussion closes the gap: percentage agreement 0.870 → 0.981, Bennett's S 0.741 → 0.963 (n = 216).</figcaption>
     </figure>
     <div class="card code">
@@ -274,7 +294,7 @@ kappa    0.321    0.885</pre>
   </ul>
 
   <figure class="shot narrow">
-    <img src="sections/bsem/assets/fig_prevalence_by_topic.png" alt="Offensiveness prevalence by topic, before and after discussion">
+    <img src="sections/bsem/assets/fig_prevalence_by_topic.png" alt="Offensiveness prevalence by topic, before and after discussion" width="1431" height="874" decoding="async" loading="eager">
     <figcaption>Offensiveness prevalence by topic — annotators' pre-discussion average vs final labels: Elections 2020 is the most offensive-heavy topic (16.7% → 14.7%), BLM the least (4.5% → 1.3%).</figcaption>
   </figure>
 
@@ -303,31 +323,31 @@ kappa    0.321    0.885</pre>
   <p>Real captures of the Docker Compose stack (MariaDB + API + nginx) at 1600×1000 @2×, with demo content seeded through the REST API — fictional names only.</p>
   <div class="grid-2">
     <figure class="shot">
-      <img src="sections/pe2_todo_app/assets/01-todos-light.png" alt="Todos list view, light theme">
+      <img src="sections/pe2_todo_app/assets/01-todos-light.webp" alt="Todos list view, light theme" width="1600" height="1000" decoding="async" loading="lazy">
       <figcaption>Todos (light) — the list view: priority, due date, assignees and finished state per row; the weekly recurrence chain shows its next occurrence.</figcaption>
     </figure>
     <figure class="shot">
-      <img src="sections/pe2_todo_app/assets/02-todos-dark.png" alt="Todos list view, dark theme">
+      <img src="sections/pe2_todo_app/assets/02-todos-dark.webp" alt="Todos list view, dark theme" width="1600" height="1000" decoding="async" loading="lazy">
       <figcaption>The same list in dark theme — both palettes come from shared design tokens, toggled in the header.</figcaption>
     </figure>
   </div>
   <div class="grid-2">
     <figure class="shot">
-      <img src="sections/pe2_todo_app/assets/04-board-light.png" alt="Kanban board, light theme">
+      <img src="sections/pe2_todo_app/assets/04-board-light.webp" alt="Kanban board, light theme" width="1600" height="1000" decoding="async" loading="lazy">
       <figcaption>Kanban board (light) — OPEN / IN_PROGRESS / DONE, with the finished flag kept in sync on every move and finishing spawning the next recurrence.</figcaption>
     </figure>
     <figure class="shot">
-      <img src="sections/pe2_todo_app/assets/03-board-dark.png" alt="Kanban board, dark theme">
+      <img src="sections/pe2_todo_app/assets/03-board-dark.webp" alt="Kanban board, dark theme" width="1600" height="1000" decoding="async" loading="lazy">
       <figcaption>The board in dark theme.</figcaption>
     </figure>
   </div>
   <div class="grid-2">
     <figure class="shot">
-      <img src="sections/pe2_todo_app/assets/05-stats-light.png" alt="Statistics dashboard">
+      <img src="sections/pe2_todo_app/assets/05-stats-light.webp" alt="Statistics dashboard" width="1600" height="1000" decoding="async" loading="lazy">
       <figcaption>Statistics — completion rate, average days to finish, per-priority / per-category / per-assignee counts, and the classifier feedback panel that records corrections for retraining (the demo set splits 8 private / 5 work).</figcaption>
     </figure>
     <figure class="shot">
-      <img src="sections/pe2_todo_app/assets/06-assignees-light.png" alt="Assignees overview">
+      <img src="sections/pe2_todo_app/assets/06-assignees-light.webp" alt="Assignees overview" width="1600" height="1000" decoding="async" loading="lazy">
       <figcaption>Assignees — CRUD with uni-stuttgart.de email validation (stud. / iste. / ipvs. / sec.) enforced server-side.</figcaption>
     </figure>
   </div>
@@ -381,7 +401,7 @@ kappa    0.321    0.885</pre>
   </div>
   <div class="grid-2">
     <figure class="shot">
-      <img src="sections/pe2_library_cli/assets/actions.png" alt="GitHub Actions — the verify workflow green on master">
+      <img src="sections/pe2_library_cli/assets/actions.png" alt="GitHub Actions — the verify workflow green on master" width="1262" height="568" decoding="async" loading="lazy">
       <figcaption>CI on every push to <code>master</code>: <code>./mvnw -B verify</code> on JDK 21 — build, all 108 tests, coverage gate. The three latest runs, all green.</figcaption>
     </figure>
     <div class="card code">
@@ -439,25 +459,25 @@ model/    Book · BookCopy · Customer · Reservation</pre></div>
   <p>Captured from the real app on this machine (<code>java -cp target/classes selectionwheel.MainWheel</code>): at rest, mid-spin at two speeds, after coming to rest, and the runtime file-loading dialog.</p>
   <div class="grid-2">
     <figure class="shot">
-      <img src="sections/pe1_selection_wheel/assets/app-idle.png" alt="Selection Wheel app at rest: the wheel with black borders, the Info panel and the Spin / Load list buttons">
+      <img src="sections/pe1_selection_wheel/assets/app-idle.webp" alt="Selection Wheel app at rest: the wheel with black borders, the Info panel and the Spin / Load list buttons" width="1268" height="777" decoding="async" loading="lazy">
       <figcaption>At rest — 15 sections from the bundled <code>itemlist.txt</code>, borders on, the Info panel showing Selection / Angle / Speed, result bar idling on “Spin the wheel!”.</figcaption>
     </figure>
     <figure class="shot">
-      <img src="sections/pe1_selection_wheel/assets/app-result.png" alt="Selection Wheel app just after a spin ended, result bar showing the selection">
+      <img src="sections/pe1_selection_wheel/assets/app-result.webp" alt="Selection Wheel app just after a spin ended, result bar showing the selection" width="1268" height="777" decoding="async" loading="lazy">
       <figcaption>Landed — this spin came to rest at −165.1° (German number format, as on this machine): <code>floor(15 + (−165.1 % 360) / 24) % 15 = 8</code> → “Rat”, exactly the wedge under the pointer. The inline result bar names it; no modal dialog ever blocks the flow.</figcaption>
     </figure>
   </div>
   <div class="strip">
     <figure class="shot">
-      <img src="sections/pe1_selection_wheel/assets/app-spin-fast.png" alt="Selection Wheel app early in a spin: button disabled, Spinning… shown">
+      <img src="sections/pe1_selection_wheel/assets/app-spin-fast.webp" alt="Selection Wheel app early in a spin: button disabled, Spinning… shown" width="1268" height="777" decoding="async" loading="lazy">
       <figcaption>Early in a random spin — the speed readout sits at 268 °/s and is decaying, the Spin button is disabled and the bar reads “Spinning…”.</figcaption>
     </figure>
     <figure class="shot">
-      <img src="sections/pe1_selection_wheel/assets/app-spin-slow.png" alt="Selection Wheel app late in a spin: low speed readout">
+      <img src="sections/pe1_selection_wheel/assets/app-spin-slow.webp" alt="Selection Wheel app late in a spin: low speed readout" width="1268" height="777" decoding="async" loading="lazy">
       <figcaption>A few seconds into the same spin — down to 197 °/s, with <code>v&sup2; / 2a &asymp; 970&deg;</code> (2.7 more turns) of deceleration still ahead.</figcaption>
     </figure>
     <figure class="shot">
-      <img src="sections/pe1_selection_wheel/assets/app-load-dialog.png" alt="JFileChooser dialog for loading a custom item list">
+      <img src="sections/pe1_selection_wheel/assets/app-load-dialog.png" alt="JFileChooser dialog for loading a custom item list" width="501" height="356" decoding="async" loading="lazy">
       <figcaption>“Load list…” — a UTF-8 text file (one item per line, up to 100) replaces the wheel's items at runtime; invalid files are reported and leave the wheel unchanged.</figcaption>
     </figure>
   </div>
@@ -466,11 +486,11 @@ model/    Book · BookCopy · Customer · Reservation</pre></div>
   <p>The renderer was extracted so it can paint into a <code>BufferedImage</code> with no window involved — the images below come straight from <code>WheelRenderer.render(model, 1200, 1200)</code>. It is deliberately rotation-independent: the model's angle is applied by the component at paint time, so the cached image stays valid while the wheel turns.</p>
   <div class="strip">
     <figure class="shot">
-      <img src="sections/pe1_selection_wheel/assets/renderer-circle.png" alt="Wheel rendered at 1200 pixels, circle shape with the default 12-color palette">
+      <img src="sections/pe1_selection_wheel/assets/renderer-circle.webp" alt="Wheel rendered at 1200 pixels, circle shape with the default 12-color palette" width="1200" height="1200" decoding="async" loading="lazy">
       <figcaption>The default <code>CIRCLE</code> shape, 15 sections — this exact frame also seeds the canvas widget above.</figcaption>
     </figure>
     <figure class="shot">
-      <img src="sections/pe1_selection_wheel/assets/renderer-umbrella.png" alt="Wheel rendered at 1200 pixels in the umbrella shape">
+      <img src="sections/pe1_selection_wheel/assets/renderer-umbrella.webp" alt="Wheel rendered at 1200 pixels in the umbrella shape" width="1200" height="1200" decoding="async" loading="lazy">
       <figcaption>The same renderer in the library's second shape, <code>UMBRELLA</code> — <code>setShape(Wheel.Shape.UMBRELLA)</code> swaps the fill geometry, everything else is shared.</figcaption>
     </figure>
   </div>
@@ -559,32 +579,32 @@ public static SpinStep compute(double currentSpeed, int direction,
 
   <h3>The Noten tab — where the math lives</h3>
   <figure class="shot">
-    <img src="sections/oop_student_organizer/assets/noten-tab.png" alt="Noten tab: GPA 2,05, 51/69 ECTS, ECTS progress pie chart, grade bar chart">
+    <img src="sections/oop_student_organizer/assets/noten-tab.webp" alt="Noten tab: GPA 2,05, 51/69 ECTS, ECTS progress pie chart, grade bar chart" width="1600" height="999" decoding="async" loading="lazy">
     <figcaption>Noten tab: ECTS-weighted average <b>2,05</b> across the graded modules, <b>51 / 69</b> ECTS passed, the ECTS progress pie (74 %) and the per-module grade chart — all recomputed from the module list on every change. Captured at 2×; click to zoom.</figcaption>
   </figure>
 
   <div class="grid-2">
     <figure class="shot">
-      <img src="sections/oop_student_organizer/assets/module-tab.png" alt="Module tab: twelve module cards with ECTS, semester and grade/Studienleistung state">
+      <img src="sections/oop_student_organizer/assets/module-tab.webp" alt="Module tab: twelve module cards with ECTS, semester and grade/Studienleistung state" width="1600" height="999" decoding="async" loading="lazy">
       <figcaption>Module tab: one card per module — ECTS, semester, grade or Studienleistung state, edit / delete — with search, status and semester filters plus sorting across the top. Twelve demo modules over four semesters.</figcaption>
     </figure>
     <figure class="shot">
-      <img src="sections/oop_student_organizer/assets/fristen-tab.png" alt="Fristen tab: deadline cards with red, orange and green state borders">
+      <img src="sections/oop_student_organizer/assets/fristen-tab.webp" alt="Fristen tab: deadline cards with red, orange and green state borders" width="1600" height="999" decoding="async" loading="lazy">
       <figcaption>Fristen tab: deadlines sorted overdue-first; the card border carries the state — red <i>überfällig</i>, orange <i>offen</i>, green <i>erledigt</i> — with one-click "Erledigt" and a one-file .ics calendar export.</figcaption>
     </figure>
   </div>
 
   <div class="strip">
     <figure class="shot">
-      <img src="sections/oop_student_organizer/assets/notensimulator-input.png" alt="Notensimulator input dialog: assumed grade 2,0 for all open graded modules">
+      <img src="sections/oop_student_organizer/assets/notensimulator-input.png" alt="Notensimulator input dialog: assumed grade 2,0 for all open graded modules" width="1061" height="324" decoding="async" loading="lazy">
       <figcaption>The simulator is a real dialog: the assumed grade for all open graded modules…</figcaption>
     </figure>
     <figure class="shot">
-      <img src="sections/oop_student_organizer/assets/notensimulator-result.png" alt="Notenprojektion alert: projection 2,03, needed grades 1,89 and 3,53, targets 1,0/1,5/3,0 unreachable">
+      <img src="sections/oop_student_organizer/assets/notensimulator-result.png" alt="Notenprojektion alert: projection 2,03, needed grades 1,89 and 3,53, targets 1,0/1,5/3,0 unreachable" width="720" height="570" decoding="async" loading="lazy">
       <figcaption>…and the projection it prints for the demo semester: current 2,05 → <b>2,03</b> if the open modules land at 2,0; a final 2,0 needs a 1,89 average in the open modules, 2,5 needs 3,53 — 1,0 / 1,5 / 3,0 are mathematically out of reach.</figcaption>
     </figure>
     <figure class="shot">
-      <img src="sections/oop_student_organizer/assets/semester-dashboard.png" alt="Semester-Dashboard: monospace progress bars per semester">
+      <img src="sections/oop_student_organizer/assets/semester-dashboard.png" alt="Semester-Dashboard: monospace progress bars per semester" width="720" height="618" decoding="async" loading="lazy">
       <figcaption>Semester-Dashboard: progress and running average per semester as a monospace bar report — 100 % / 100 % / 69 % / 28 % over the demo history.</figcaption>
     </figure>
   </div>
@@ -618,6 +638,9 @@ if (noetig &lt; 1.0 || noetig &gt; 5.0)
   </div>
   <p>The tab logic was extracted from the former <b>674-line HomeController</b> into a coordinator plus one controller per tab (674 → 189 lines), while the single FXML stayed untouched on purpose — no <code>fx:include</code> rewrite on a UI that deliberately has no FXML-loading test coverage. Persistence is equally deliberate: two semicolon-separated CSVs with custom escaping (<code>\;</code> / <code>\n</code>), a <code>.bak</code> copy before every overwrite, and a legacy four-column reader that still loads module files written before the split. The simulator math is pinned by its own test class, and the website widget is pinned against the same implementation.</p>
 
+  <h3>Team — a seven-person EInf group project</h3>
+  <p>This started as a group assignment in <em>Einführung in die Informatik</em>: seven students, 48 commits. The project skeleton, the first deadline logic and parts of the data layer came from teammates — the code on <code>main</code> is the sum of everyone's work, not a solo build. My share (31 of the 48 commits): the domain model (<code>Modul</code>, <code>Semester</code>, the <code>Leistung</code> hierarchy), <code>SpeicherManager</code>, the GUI wiring and the per-tab controller split, the Notensimulator, the ECTS chart and semester dashboard, the ICS export — plus the JavaFX 21 migration, the CI workflow and the test build-out.</p>
+
   <p class="muted">Source: <a href="https://github.com/daniilperkin-uni/oop_student_organizer">github.com/daniilperkin-uni/oop_student_organizer</a> (public).</p>
 </section>
 <section class="project" id="computergrafik_aufgaben">
@@ -641,7 +664,7 @@ if (noetig &lt; 1.0 || noetig &gt; 5.0)
   <h3>Blatt 03–04 · the raytracer</h3>
   <div class="grid-2">
     <figure class="shot">
-      <img src="sections/computergrafik_aufgaben/assets/blatt04-scene.png" alt="Ray-traced scene: colored spheres above a checkered floor, with shadows and mirror reflections">
+      <img src="sections/computergrafik_aufgaben/assets/blatt04-scene.png" alt="Ray-traced scene: colored spheres above a checkered floor, with shadows and mirror reflections" width="600" height="600" decoding="async" loading="lazy">
       <figcaption>Blatt 04, 600×600 — Phong lighting with distance attenuation over 16 point lights, shadow rays and recursive mirror reflections (depth 5), rendered by an OpenMP-parallel loop. This sheet's reference is an eye-compare; this frame is the current code's output, re-rendered for this site.</figcaption>
     </figure>
     <div class="card code">
@@ -660,39 +683,39 @@ const Vec3d specular = std::get&lt;2&gt;(phong_coeff) *
   </div>
   <div class="grid-2">
     <figure class="shot">
-      <img src="sections/computergrafik_aufgaben/assets/blatt03-raygen.png" alt="Ray generation stage: checkered ground plane and dark blue sky">
+      <img src="sections/computergrafik_aufgaben/assets/blatt03-raygen.png" alt="Ray generation stage: checkered ground plane and dark blue sky" width="600" height="600" decoding="async" loading="lazy">
       <figcaption>Blatt 03, stage 1 — one ray through every pixel centre (course reference image; the committed code renders the next stage).</figcaption>
     </figure>
     <figure class="shot">
-      <img src="sections/computergrafik_aufgaben/assets/blatt03-spheres.png" alt="Sphere-intersection stage: spheres with flat colours on the checkered plane">
+      <img src="sections/computergrafik_aufgaben/assets/blatt03-spheres.png" alt="Sphere-intersection stage: spheres with flat colours on the checkered plane" width="600" height="600" decoding="async" loading="lazy">
       <figcaption>Blatt 03, stage 2 — first sphere intersections. <code>ctest</code> compares this against the in-repo reference and fails on more than 0.1% differing pixels — ours comes out 1 pixel off in 360,000.</figcaption>
     </figure>
   </div>
   <h3>Blatt 02 · image pipelines, from PPM bytes to colour spaces</h3>
-  <div class="ba"><img class="a" src="sections/computergrafik_aufgaben/assets/ginkgo-original.webp" alt="Ginkgo photo — original"><img class="b" src="sections/computergrafik_aufgaben/assets/ginkgo-modified.webp" alt="Ginkgo photo with the colour-key effect applied"><input type="range" value="50"></div>
+  <div class="ba"><img class="a" src="sections/computergrafik_aufgaben/assets/ginkgo-original.webp" alt="Ginkgo photo — original" width="900" height="675" decoding="async" loading="lazy"><img class="b" src="sections/computergrafik_aufgaben/assets/ginkgo-modified.webp" alt="Ginkgo photo with the colour-key effect applied" width="900" height="675" decoding="async" loading="lazy"><input type="range" value="50"></div>
   <p class="caption">Blatt 02 — drag the handle: the original photo vs the colour-key effect (exercise 4, computed in HSV). The other kept results — grayscale and black/white:</p>
   <div class="strip">
-    <figure class="shot"><img src="sections/computergrafik_aufgaben/assets/ginkgo-gray.webp" alt="Grayscale conversion result"><figcaption>Exercise 1 — grayscale.</figcaption></figure>
-    <figure class="shot"><img src="sections/computergrafik_aufgaben/assets/ginkgo-bw.webp" alt="Black and white conversion result"><figcaption>Exercise 2 — black/white.</figcaption></figure>
+    <figure class="shot"><img src="sections/computergrafik_aufgaben/assets/ginkgo-gray.webp" alt="Grayscale conversion result" width="640" height="480" decoding="async" loading="lazy"><figcaption>Exercise 1 — grayscale.</figcaption></figure>
+    <figure class="shot"><img src="sections/computergrafik_aufgaben/assets/ginkgo-bw.webp" alt="Black and white conversion result" width="640" height="480" decoding="async" loading="lazy"><figcaption>Exercise 2 — black/white.</figcaption></figure>
   </div>
 
   <h3>Blatt 06–07 · software rasterizer &amp; image filtering</h3>
   <figure class="shot">
-    <img src="sections/computergrafik_aufgaben/assets/blatt06-viewer.png" alt="Software rasterizer rendering a DNA double helix with an ImGui control panel">
+    <img src="sections/computergrafik_aufgaben/assets/blatt06-viewer.png" alt="Software rasterizer rendering a DNA double helix with an ImGui control panel" width="1600" height="900" decoding="async" loading="lazy">
     <figcaption>Blatt 06 — ImageViewer: a software rasterizer (points / wireframe / filled triangles with z-buffer, Bresenham lines, barycentric interpolation) drawing a procedural DNA double helix, with a live ImGui control panel over it.</figcaption>
   </figure>
   <div class="strip">
-    <figure class="shot"><img src="sections/computergrafik_aufgaben/assets/blatt07-viewer.webp" alt="ImageViewer07 GUI showing the Ginkgo photo with filter controls"><figcaption>Blatt 07 — ImageViewer07: convolution filtering of the Ginkgo photo — Laplacian edges, 2D and separable Gaussian, selectable kernel extents, sigma and border policies (CPU, or a compute shader for the separable Gaussian).</figcaption></figure>
-    <figure class="shot"><img src="sections/computergrafik_aufgaben/assets/ginkgo-edges.webp" alt="Edge detection result: dark image with bright outlines"><figcaption>Console mode — Laplacian edge detection.</figcaption></figure>
-    <figure class="shot"><img src="sections/computergrafik_aufgaben/assets/ginkgo-blur.webp" alt="Blurred Ginkgo photo"><figcaption>Console mode — separable Gaussian (σ = 2, kernel extent 4×4).</figcaption></figure>
+    <figure class="shot"><img src="sections/computergrafik_aufgaben/assets/blatt07-viewer.webp" alt="ImageViewer07 GUI showing the Ginkgo photo with filter controls" width="1240" height="780" decoding="async" loading="lazy"><figcaption>Blatt 07 — ImageViewer07: convolution filtering of the Ginkgo photo — Laplacian edges, 2D and separable Gaussian, selectable kernel extents, sigma and border policies (CPU, or a compute shader for the separable Gaussian).</figcaption></figure>
+    <figure class="shot"><img src="sections/computergrafik_aufgaben/assets/ginkgo-edges.webp" alt="Edge detection result: dark image with bright outlines" width="1000" height="750" decoding="async" loading="lazy"><figcaption>Console mode — Laplacian edge detection.</figcaption></figure>
+    <figure class="shot"><img src="sections/computergrafik_aufgaben/assets/ginkgo-blur.webp" alt="Blurred Ginkgo photo" width="1000" height="750" decoding="async" loading="lazy"><figcaption>Console mode — separable Gaussian (σ = 2, kernel extent 4×4).</figcaption></figure>
   </div>
   <h3>Blatt 08 · instancing and imposters</h3>
-  <div class="ba"><img class="a" src="sections/computergrafik_aufgaben/assets/blatt08-geometry.webp" alt="Forest rendered with full instanced tree geometry"><img class="b" src="sections/computergrafik_aufgaben/assets/blatt08-imposters.webp" alt="The same forest rendered with billboard imposters"><input type="range" value="50"></div>
+  <div class="ba"><img class="a" src="sections/computergrafik_aufgaben/assets/blatt08-geometry.webp" alt="Forest rendered with full instanced tree geometry" width="960" height="540" decoding="async" loading="lazy"><img class="b" src="sections/computergrafik_aufgaben/assets/blatt08-imposters.webp" alt="The same forest rendered with billboard imposters" width="960" height="540" decoding="async" loading="lazy"><input type="range" value="50"></div>
   <p class="caption">Blatt 08 — same forest, same camera; drag to compare: 192 trees as full instanced 3D geometry (left) vs as camera-facing billboard imposters (right). All buffers, VAOs and textures go through Direct State Access (OpenGL 4.5).</p>
 
   <h3>Blatt 09 · glTF scene shading</h3>
   <figure class="shot">
-    <img src="sections/computergrafik_aufgaben/assets/blatt09-scene.webp" alt="The course's original glTF scene rendered with Phong shading: an industrial cellar with brick walls, ventilation ducts and barrels">
+    <img src="sections/computergrafik_aufgaben/assets/blatt09-scene.webp" alt="The course's original glTF scene rendered with Phong shading: an industrial cellar with brick walls, ventilation ducts and barrels" width="960" height="540" decoding="async" loading="lazy">
     <figcaption>Blatt 09 — the course's own scene, loaded via tinygltf with an index-based transform hierarchy and Phong + normal-mapping shaders: an industrial cellar (brick walls, air ducts, barrels) lit by four point lights. The <code>scene.glb</code> was the one file missing from the public repo — this frame was captured from the original Aufgabenblatt 9 course files.</figcaption>
   </figure>
 
@@ -700,7 +723,7 @@ const Vec3d specular = std::get&lt;2&gt;(phong_coeff) *
 </section>
 </main>
 <footer class="footer"><div class="wrap">
-  Local build — regenerate with <code>node build.mjs</code>, serve with <code>node serve.mjs</code>. Sections © their project agents, <span id="year">2026</span>.
+  Local build — regenerate with <code>node build.mjs</code>, serve with <code>node serve.mjs</code>. Written with AI coding agents · © Daniil Perkin, <span id="year">2026</span>.
 </div></footer>
 <script src="assets/js/site.js"></script>
 <script src="assets/js/motion.js"></script>
