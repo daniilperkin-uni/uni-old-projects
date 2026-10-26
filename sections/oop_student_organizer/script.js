@@ -82,10 +82,15 @@
     projEl.textContent = proj === null ? '–' : fmt2(proj);
     let html = '';
     for (let z = 1.0; z <= 3.0; z += 0.5) {
-      const n = OopSim.benoetigteNoteFuerZiel(mods, z);
+      const st = OopSim.zielStatus(mods, z);
       const label = z.toFixed(1).replace('.', ',');
-      html += '<div class="sim-need-row"><span>Für Endnote ' + label + '</span><b class="' + (n === null ? 'na' : 'ok') + '">'
-        + (n === null ? 'nicht erreichbar' : 'Ø ' + fmt2(n) + ' nötig') + '</b></div>';
+      let text = 'nicht erreichbar';
+      let cls = 'na';
+      if (st.status === 'needed') { text = 'Ø ' + fmt2(st.note) + ' nötig'; cls = 'ok'; }
+      else if (st.status === 'achieved') { text = 'bereits erreicht'; cls = 'ok'; }
+      else if (st.status === 'no-headroom') { text = 'kein Spielraum — nichts offen'; }
+      html += '<div class="sim-need-row"><span>Für Endnote ' + label + '</span><b class="' + cls + '">'
+        + text + '</b></div>';
     }
     needEl.innerHTML = html;
     const fix = mods.filter(m => m.istBenotet && m.hatNote).reduce((s, m) => s + m.ects, 0);

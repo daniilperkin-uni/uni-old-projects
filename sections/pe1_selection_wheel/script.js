@@ -250,6 +250,10 @@
   canvas.addEventListener('pointerdown', function (e) {
     if (e.pointerType === 'mouse' && e.button !== 0) { return; }
     e.preventDefault();
+    /* preventDefault() suppresses the compatibility mouse events that would focus
+       the tabindex="0" canvas, so focus it explicitly — otherwise the hint
+       "click the wheel first, then Space" is a lie. */
+    canvas.focus();
     try { canvas.setPointerCapture(e.pointerId); } catch (err) { /* synthetic pointers etc. */ }
     var p = pos(e);
     var d = Math.sqrt(Math.pow(p.x - geom.cx, 2) + Math.pow(p.y - geom.cy, 2));

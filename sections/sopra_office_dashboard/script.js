@@ -137,8 +137,23 @@
     sync();
   });
 
-  stage.addEventListener('mouseenter', function () { hoverPaused = true; sync(); });
-  stage.addEventListener('mouseleave', function () { hoverPaused = false; sync(); });
+  /* Hover-pause is a desktop affordance. On touch, mouseenter fires on the first
+     tap and no mouseleave ever follows, which used to strand the replay paused
+     with no way back (Play only toggles userPaused). Filter on pointerType and
+     clear any stale hover state when a non-mouse pointer goes down. */
+  stage.addEventListener('pointerenter', function (ev) {
+    if (ev.pointerType !== 'mouse') { return; }
+    hoverPaused = true;
+    sync();
+  });
+  stage.addEventListener('pointerleave', function (ev) {
+    if (ev.pointerType !== 'mouse') { return; }
+    hoverPaused = false;
+    sync();
+  });
+  stage.addEventListener('pointerdown', function (ev) {
+    if (ev.pointerType !== 'mouse' && hoverPaused) { hoverPaused = false; sync(); }
+  });
 
   function openLb() {
     if (lbEl) { return; }

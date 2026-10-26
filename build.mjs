@@ -36,6 +36,9 @@ function placeholder(p) {
 }
 
 let html = readFileSync(join(root, 'shell', 'template.html'), 'utf8');
+/* The project count in the title/meta/hero copy comes from sections.json, so adding
+   or removing a project cannot leave the page claiming the wrong number. */
+html = html.split('@COUNT@').join(String(conf.projects.length));
 html = html.split('<!-- @NAV@ -->').join(nav.join('\n'));
 html = html.split('<!-- @SECTIONS@ -->').join(parts.join('\n'));
 html = html.split('<!-- @SECTION_STYLES@ -->').join(styles.join('\n'));

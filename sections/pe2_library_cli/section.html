@@ -2,7 +2,7 @@
   <header class="p-head">
     <p class="p-owner">@pe2-library-cli · section live</p>
     <h2>PE2 Library CLI</h2>
-    <p class="p-lede">A German-language command-line library manager — rebuilt from a single 985-line file into a five-layer Maven project with a 108-test suite, a coverage gate and CI.</p>
+    <p class="p-lede">A German-language command-line library manager — rebuilt from a single 985-line file into a five-layer Maven project with a 121-test suite, a coverage gate and CI.</p>
     <p class="chips"><span class="chip">Java 21</span><span class="chip">Maven</span><span class="chip">JUnit 5 · AssertJ</span><span class="chip">jacoco</span><span class="chip">GitHub Actions</span><span class="chip">terminal UI</span></p>
   </header>
 
@@ -11,7 +11,7 @@
   <p class="caption">Interactive replay of a real session recorded on this machine — output captured verbatim from the app: a loan, the double-loan guard, then a late return with the overdue fee. The second tab replays the ISBN reservation queue (Vormerkungen) with FIFO order and cancellation.</p>
 
   <div class="kpis">
-    <div class="kpi"><b>108</b><span>tests green in <code>verify</code></span></div>
+    <div class="kpi"><b>121</b><span>tests green in <code>verify</code></span></div>
     <div class="kpi"><b>80.75%</b><span>instruction coverage (jacoco gate)</span></div>
     <div class="kpi"><b>985 → 13</b><span>files across 5 layers</span></div>
     <div class="kpi"><b>6+</b><span>audited bugs fixed under test</span></div>
@@ -19,11 +19,11 @@
   <div class="grid-2">
     <figure class="shot">
       <img src="sections/pe2_library_cli/assets/actions.png" alt="GitHub Actions — the verify workflow green on master" width="1262" height="568" decoding="async" loading="lazy">
-      <figcaption>CI on every push to <code>master</code>: <code>./mvnw -B verify</code> on JDK 21 — build, all 108 tests, coverage gate. The three latest runs, all green.</figcaption>
+      <figcaption>CI on every push to <code>master</code>: <code>./mvnw -B verify</code> on JDK 21 — build, all 121 tests, coverage gate. The three latest runs, all green.</figcaption>
     </figure>
     <div class="card code">
       <h3>The same command, locally</h3>
-      <pre>[INFO] Tests run: 108, Failures: 0, Errors: 0, Skipped: 0
+      <pre>[INFO] Tests run: 121, Failures: 0, Errors: 0, Skipped: 0
 [INFO] BUILD SUCCESS
 [INFO] Total time:  4.831 s</pre>
       <p class="muted">Verbatim output of <code>-B clean verify</code> on this machine — warm-cache fast, jacoco gate included. Reproduce: <code>./mvnw -B verify</code>.</p>

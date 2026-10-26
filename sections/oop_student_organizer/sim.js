@@ -55,6 +55,37 @@ const OopSim = (() => {
     return noetig;
   }
 
-  return { berechneNotendurchschnitt, simuliereNotendurchschnitt, benoetigteNoteFuerZiel };
+  // Site-only helper — not part of the Java port. benoetigteNoteFuerZiel() returns
+  // null for three different reasons, and the widget has to tell them apart:
+  //   'needed'      -> note is the grade the open modules still need
+  //   'achieved'    -> the fixed average already meets the target (nothing left to do)
+  //   'no-headroom' -> no open graded ECTS left, and the fixed average misses it
+  //   'impossible'  -> open ECTS remain, but even 1.0 in all of them would miss it
+  function zielStatus(module, zielnote) {
+    if (zielnote < 1.0 || zielnote > 4.0) return { status: 'invalid', note: null };
+    let fixNoteEcts = 0.0;
+    let fixEcts = 0;
+    let offenEcts = 0;
+    for (const m of module) {
+      if (!m.istBenotet) continue;
+      if (m.hatNote) {
+        fixNoteEcts += m.note * m.ects;
+        fixEcts += m.ects;
+      } else {
+        offenEcts += m.ects;
+      }
+    }
+    const fixSchnitt = fixEcts > 0 ? fixNoteEcts / fixEcts : null;
+    if (offenEcts === 0) {
+      if (fixSchnitt !== null && fixSchnitt <= zielnote) return { status: 'achieved', note: null };
+      return { status: 'no-headroom', note: null };
+    }
+    const noetig = (zielnote * (fixEcts + offenEcts) - fixNoteEcts) / offenEcts;
+    if (noetig < 1.0) return { status: 'impossible', note: null };
+    if (fixSchnitt !== null && fixSchnitt <= zielnote) return { status: 'achieved', note: noetig };
+    return { status: 'needed', note: noetig };
+  }
+
+  return { berechneNotendurchschnitt, simuliereNotendurchschnitt, benoetigteNoteFuerZiel, zielStatus };
 })();
 if (typeof module !== 'undefined' && module.exports) module.exports = OopSim;

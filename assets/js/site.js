@@ -56,7 +56,10 @@
   }
   var year = document.getElementById('year');
   if (year) { year.textContent = new Date().getFullYear(); }
-  /* lightbox: click a figure image to zoom; click or Esc closes. Dialog semantics + focus handling. */
+  /* lightbox: click or Enter/Space on a figure image to zoom; Esc or the close
+     button closes. Every .shot img is made a real keyboard target (role=button),
+     and the dialog opens with focus on its close button, so the preview is not
+     mouse-only. */
   var lastFocus = null;
   function closeLb() {
     var lb = document.querySelector('.lb');
@@ -64,30 +67,56 @@
     if (lastFocus && document.contains(lastFocus)) { lastFocus.focus(); }
     lastFocus = null;
   }
-  document.addEventListener('click', function (ev) {
-    if (!ev.target.closest) { return; }
-    if (ev.target.closest('.lb')) { closeLb(); return; }
-    var img = ev.target.closest('.shot img');
-    if (!img) { return; }
+  function openLb(img) {
     var overlay = document.createElement('div');
     overlay.className = 'lb';
     overlay.setAttribute('role', 'dialog');
     overlay.setAttribute('aria-modal', 'true');
     overlay.setAttribute('aria-label', 'Image preview');
     overlay.tabIndex = -1;
+    var close = document.createElement('button');
+    close.type = 'button';
+    close.className = 'lb-close';
+    close.textContent = 'Close';
+    close.setAttribute('aria-label', 'Close image preview');
+    close.addEventListener('click', function (ev) { ev.stopPropagation(); closeLb(); });
     var big = document.createElement('img');
     big.src = img.src; big.alt = img.alt;
+    overlay.appendChild(close);
     overlay.appendChild(big);
     document.body.appendChild(overlay);
     lastFocus = img;
-    if (!img.hasAttribute('tabindex')) { img.setAttribute('tabindex', '-1'); }
-    overlay.focus();
+    close.focus();
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.shot img'), function (img) {
+    img.setAttribute('tabindex', '0');
+    img.setAttribute('role', 'button');
+    if (!img.getAttribute('aria-label')) {
+      img.setAttribute('aria-label', 'Open image: ' + (img.getAttribute('alt') || 'capture'));
+    }
+    img.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Enter' || ev.key === ' ' || ev.key === 'Spacebar') {
+        ev.preventDefault();
+        openLb(img);
+      }
+    });
+  });
+  document.addEventListener('click', function (ev) {
+    if (!ev.target.closest) { return; }
+    if (ev.target.closest('.lb')) { closeLb(); return; }
+    var img = ev.target.closest('.shot img');
+    if (!img) { return; }
+    openLb(img);
   });
   document.addEventListener('keydown', function (ev) {
     var lb = document.querySelector('.lb');
     if (!lb) { return; }
     if (ev.key === 'Escape') { closeLb(); }
-    else if (ev.key === 'Tab') { ev.preventDefault(); lb.focus(); }
+    else if (ev.key === 'Tab') {
+      ev.preventDefault();
+      var close = lb.querySelector('.lb-close');
+      (close || lb).focus();
+    }
   });
   /* before/after slider: <div class="ba"><img class="a" src><img class="b" src><input type="range" value="50"></div> */
   document.querySelectorAll('.ba').forEach(function (ba) {
