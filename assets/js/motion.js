@@ -87,35 +87,49 @@
     var p = Math.min(1, y / max);
     var railTop = vh * 0.12, railH = vh * 0.76;
 
+    /* ---- read phase: every layout query first ----
+       A write between two getBoundingClientRect calls forces a synchronous
+       re-layout for the next one (~46 per frame here). Nothing below depends
+       on another element's new position, so all reads can happen up front. */
+    var tops = [];
+    for (var i = 0; i < sections.length; i++) { tops.push(sections[i].getBoundingClientRect().top); }
+    var heads = [];
+    for (var j = 0; j < stickyHeads.length; j++) {
+      var sec = stickyHeads[j].closest('.project');
+      var rr = sec ? sec.getBoundingClientRect() : null;
+      heads.push(rr ? { top: rr.top, span: Math.max(1, rr.height - vh * 0.35) } : null);
+    }
+    var pxs = [];
+    for (var k = 0; k < shots.length; k++) {
+      var fr = shots[k].parentNode.getBoundingClientRect();
+      pxs.push(fr.bottom < -120 || fr.top > vh + 120
+        ? null
+        : (((fr.top + fr.height / 2 - vh / 2) / vh) * -14).toFixed(2) + 'px');
+    }
+
+    /* ---- write phase ---- */
     fill.style.transform = 'scaleY(' + p + ')';
     node.style.transform = 'translateY(' + (railTop + railH * p - 6) + 'px)';
 
     var current = 0;
-    for (var i = 0; i < sections.length; i++) {
-      var r = sections[i].getBoundingClientRect();
-      var f = Math.min(1, Math.max(0, (r.top + y) / max));
+    for (i = 0; i < tops.length; i++) {
+      var f = Math.min(1, Math.max(0, (tops[i] + y) / max));
       ticks[i].style.top = (railTop + railH * f) + 'px';
-      if (r.top <= vh * 0.35) { current = i; ticks[i].classList.add('on'); }
+      if (tops[i] <= vh * 0.35) { current = i; ticks[i].classList.add('on'); }
       else { ticks[i].classList.remove('on'); }
     }
     cnt.style.top = (railTop + railH * p) + 'px';
     cnt.textContent = ('0' + (current + 1)).slice(-2) + '/' + ('0' + sections.length).slice(-2);
 
-    for (var j = 0; j < stickyHeads.length; j++) {
-      var sec = stickyHeads[j].closest('.project');
-      if (!sec) { continue; }
-      var rr = sec.getBoundingClientRect();
-      var span = Math.max(1, rr.height - vh * 0.35);
-      var sp = Math.min(1, Math.max(0, (vh * 0.35 - rr.top) / span));
+    for (j = 0; j < heads.length; j++) {
+      if (!heads[j]) { continue; }
+      var sp = Math.min(1, Math.max(0, (vh * 0.35 - heads[j].top) / heads[j].span));
       stickyHeads[j].style.setProperty('--sp', sp.toFixed(4));
     }
 
-    for (var k = 0; k < shots.length; k++) {
-      var img = shots[k];
-      var fr = img.parentNode.getBoundingClientRect();
-      if (fr.bottom < -120 || fr.top > vh + 120) { continue; }
-      var d = (fr.top + fr.height / 2 - vh / 2) / vh;
-      img.style.setProperty('--px', (d * -14).toFixed(2) + 'px');
+    for (k = 0; k < pxs.length; k++) {
+      if (pxs[k] === null) { continue; }
+      shots[k].style.setProperty('--px', pxs[k]);
     }
 
     if (hero) {

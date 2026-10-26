@@ -25,7 +25,6 @@ Use the repo folder name as `<id>` (e.g. `pe2_todo_app`). Edit only your own fol
       <figure class="shot"><img src="sections/<id>/assets/x.png" alt=""><figcaption>Caption</figcaption></figure>
 - Image strip: wrap several `.shot`s in `<div class="strip">` (auto-fit grid).
 - Two-column layout: `<div class="grid-2">` (stacks on mobile).
-- Full-bleed media: add `class="bleed"` to a wrapper.
 - Before/after slider (capture pairs):
       <div class="ba"><img class="a" src="before.png"><img class="b" src="after.png"><input type="range" value="50"></div>
       Give the range input an aria-label ("Original vs filtered"); a generic default is applied when missing.

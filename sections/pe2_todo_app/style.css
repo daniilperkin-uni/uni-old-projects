@@ -3,7 +3,8 @@
 /* classifier widget */
 .cls{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
 .cls input{width:100%;box-sizing:border-box;background:var(--surface2);border:1px solid var(--border);border-radius:10px;color:var(--text);font:inherit;font-size:15px;padding:10px 12px}
-.cls input:focus{outline:none;border-color:var(--accent)}
+/* mouse focus: accent tint only — keyboard focus keeps base.css's :focus-visible ring */
+.cls input:focus:not(:focus-visible){outline:none;border-color:var(--accent)}
 .cls-examples{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 .cls-examples button{background:var(--surface2);border:1px solid var(--border);color:var(--muted);border-radius:999px;padding:4px 10px;font:inherit;font-size:12.5px;cursor:pointer}
 .cls-examples button:hover{color:var(--text);border-color:var(--accent)}

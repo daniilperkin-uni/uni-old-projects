@@ -14,8 +14,8 @@
   .topnav .wrap{padding:6px 24px}
   .topnav a{min-height:34px}
 }
-/* anchor offset for the sticky nav (--nav-h is set by site.js) */
-section.project{scroll-margin-top:calc(var(--nav-h, 96px) + 14px)}
+/* anchor offset for the sticky nav (--nav-h defaults to 56px in tokens.css, site.js updates it) */
+section.project{scroll-margin-top:calc(var(--nav-h) + 14px)}
 @media(max-width:640px){
   .topnav .wrap{padding:6px 16px}
   .navlinks{gap:14px}
@@ -32,7 +32,6 @@ section.project{scroll-margin-top:calc(var(--nav-h, 96px) + 14px)}
 .grid-2{display:grid;gap:18px;grid-template-columns:1fr 1fr;margin:18px 0}
 @media(max-width:840px){.grid-2{grid-template-columns:1fr}}
 .grid-2 > *,.strip > *,.kpis > *{min-width:0}
-.bleed{width:100vw;margin-left:calc(50% - 50vw)}
 /* kpis */
 .kpis{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));margin:22px 0}
 .kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px}

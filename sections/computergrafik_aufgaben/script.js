@@ -157,5 +157,18 @@ function render() {
 btn.addEventListener('click', render);
 cbS.addEventListener('change', render);
 cbR.addEventListener('change', render);
-render();
+/* 240x240 = 57,600 primary rays, ~0.4 s of main-thread work. The section is
+   far below the fold, so pay it only once the widget is actually on screen
+   (same gate the library replay uses). Button and checkboxes stay immediate. */
+if ('IntersectionObserver' in window) {
+  var started = false;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting && !started) { started = true; io.unobserve(mount); render(); }
+    });
+  }, { threshold: 0.2 });
+  io.observe(mount);
+} else {
+  render();
+}
 })();

@@ -6,6 +6,10 @@
   --radius:14px;
   --font:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
   --mono:"Cascadia Code",Consolas,"SF Mono",Menlo,monospace;
+  /* sticky-nav height — single default (one-row mobile nav); site.js overwrites
+     it with the measured height on load and on resize. Never hardcode a
+     different fallback at the use sites. */
+  --nav-h:56px;
 }
 html[data-theme="light"]{
   --bg:#f6f7fb;--surface:#ffffff;--surface2:#eef1f8;--text:#171b26;--muted:#5a6474;
