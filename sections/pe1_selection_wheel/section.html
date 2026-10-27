@@ -10,7 +10,7 @@
   <p class="caption"><b>Live</b> &mdash; drag the wheel and release to flick it, click it mid-spin to stop it dead, press <b>Space</b>/<b>Enter</b> (or the button) for a random spin at 180&ndash;360&nbsp;&deg;/s. The animation advances in the app's own 10&nbsp;ms steps of <code>SpinStep.compute</code>, and the selection under the pointer is the same <code>floor(n + angle % 360 / 24&deg;) % n</code>. Spin speed and direction, deceleration and landing are validated 1:1 against the Java classes &mdash; 8,892 generated test vectors, zero mismatches.</p>
 
   <div class="kpis">
-    <div class="kpi"><b>106</b><span>tests green in <code>verify</code> — JUnit 5 + AssertJ, 0 failures</span></div>
+    <div class="kpi"><b>120</b><span>tests green in <code>verify</code> — JUnit 5 + AssertJ, 0 failures</span></div>
     <div class="kpi"><b>97–100%</b><span>instruction coverage of the pure layers (WheelMath · SpinStep · TickMath · WheelModel)</span></div>
     <div class="kpi"><b>0</b><span>mismatches against the Java classes across 8,892 ported-math test vectors</span></div>
     <div class="kpi"><b>10 ms</b><span>per physics step — the app's 100&nbsp;Hz timer, replayed exactly</span></div>

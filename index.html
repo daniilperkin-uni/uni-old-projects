@@ -216,8 +216,8 @@ export const KB_URL_PARAM = {
   <p class="caption">Every frame is a real capture from the running stack at <b>3840×2160</b> — the kiosk renders one fixed 4K canvas and a Smart Scaler transforms it to fit whatever screen it runs on, so this is the layout as designed. The live display rotates on a configurable interval (15 s default), cuts between views with no crossfade and re-reads its config every 30 s — this replay does the same, just faster. Switch to <b>Admin</b> for the screens behind the glass; click the stage to zoom a frame.</p>
 
   <div class="kpis">
-    <div class="kpi"><b>93</b><span>backend tests green — JUnit 5 on H2</span></div>
-    <div class="kpi"><b>63</b><span>frontend tests green — Vitest, 10 files</span></div>
+    <div class="kpi"><b>97</b><span>backend tests green — JUnit 5 on H2</span></div>
+    <div class="kpi"><b>72</b><span>frontend tests green — Vitest, 11 files</span></div>
     <div class="kpi"><b>7</b><span>Gradle modules behind one boot jar</span></div>
     <div class="kpi"><b>3840×2160</b><span>one fixed 4K canvas, scaled to any screen</span></div>
   </div>
@@ -401,7 +401,7 @@ kappa    0.321    0.885</pre>
   <header class="p-head">
     <p class="p-owner">@pe2-library-cli · section live</p>
     <h2>PE2 Library CLI</h2>
-    <p class="p-lede">A German-language command-line library manager — rebuilt from a single 985-line file into a five-layer Maven project with a 121-test suite, a coverage gate and CI.</p>
+    <p class="p-lede">A German-language command-line library manager — rebuilt from a single 985-line file into a five-layer Maven project with a 143-test suite, a coverage gate and CI.</p>
     <p class="chips"><span class="chip">Java 21</span><span class="chip">Maven</span><span class="chip">JUnit 5 · AssertJ</span><span class="chip">jacoco</span><span class="chip">GitHub Actions</span><span class="chip">terminal UI</span></p>
   </header>
 
@@ -410,7 +410,7 @@ kappa    0.321    0.885</pre>
   <p class="caption">Interactive replay of a real session recorded on this machine — output captured verbatim from the app: a loan, the double-loan guard, then a late return with the overdue fee. The second tab replays the ISBN reservation queue (Vormerkungen) with FIFO order and cancellation.</p>
 
   <div class="kpis">
-    <div class="kpi"><b>121</b><span>tests green in <code>verify</code></span></div>
+    <div class="kpi"><b>143</b><span>tests green in <code>verify</code></span></div>
     <div class="kpi"><b>80.75%</b><span>instruction coverage (jacoco gate)</span></div>
     <div class="kpi"><b>985 → 13</b><span>files across 5 layers</span></div>
     <div class="kpi"><b>6+</b><span>audited bugs fixed under test</span></div>
@@ -418,11 +418,11 @@ kappa    0.321    0.885</pre>
   <div class="grid-2">
     <figure class="shot">
       <img src="sections/pe2_library_cli/assets/actions.png" alt="GitHub Actions — the verify workflow green on master" width="1262" height="568" decoding="async" loading="lazy">
-      <figcaption>CI on every push to <code>master</code>: <code>./mvnw -B verify</code> on JDK 21 — build, all 121 tests, coverage gate. The three latest runs, all green.</figcaption>
+      <figcaption>CI on every push to <code>master</code>: <code>./mvnw -B verify</code> on JDK 21 — build, all 143 tests, coverage gate. The three latest runs, all green.</figcaption>
     </figure>
     <div class="card code">
       <h3>The same command, locally</h3>
-      <pre>[INFO] Tests run: 121, Failures: 0, Errors: 0, Skipped: 0
+      <pre>[INFO] Tests run: 143, Failures: 0, Errors: 0, Skipped: 0
 [INFO] BUILD SUCCESS
 [INFO] Total time:  4.831 s</pre>
       <p class="muted">Verbatim output of <code>-B clean verify</code> on this machine — warm-cache fast, jacoco gate included. Reproduce: <code>./mvnw -B verify</code>.</p>
@@ -465,7 +465,7 @@ model/    Book · BookCopy · Customer · Reservation</pre></div>
   <p class="caption"><b>Live</b> &mdash; drag the wheel and release to flick it, click it mid-spin to stop it dead, press <b>Space</b>/<b>Enter</b> (or the button) for a random spin at 180&ndash;360&nbsp;&deg;/s. The animation advances in the app's own 10&nbsp;ms steps of <code>SpinStep.compute</code>, and the selection under the pointer is the same <code>floor(n + angle % 360 / 24&deg;) % n</code>. Spin speed and direction, deceleration and landing are validated 1:1 against the Java classes &mdash; 8,892 generated test vectors, zero mismatches.</p>
 
   <div class="kpis">
-    <div class="kpi"><b>106</b><span>tests green in <code>verify</code> — JUnit 5 + AssertJ, 0 failures</span></div>
+    <div class="kpi"><b>120</b><span>tests green in <code>verify</code> — JUnit 5 + AssertJ, 0 failures</span></div>
     <div class="kpi"><b>97–100%</b><span>instruction coverage of the pure layers (WheelMath · SpinStep · TickMath · WheelModel)</span></div>
     <div class="kpi"><b>0</b><span>mismatches against the Java classes across 8,892 ported-math test vectors</span></div>
     <div class="kpi"><b>10 ms</b><span>per physics step — the app's 100&nbsp;Hz timer, replayed exactly</span></div>
@@ -587,10 +587,10 @@ public static SpinStep compute(double currentSpeed, int direction,
   <p class="caption">Validation of the port (sources in <code>sections/oop_student_organizer/tools/</code>): Java dumps reference values for 307 module-list cases — 300 randomised, six mirroring the app's own <code>NotensimulatorTest</code>, one the demo semester — and Node replays them through the port: <b>3,070 / 3,070 values identical, strict double equality</b>.</p>
 
   <div class="kpis">
-    <div class="kpi"><b>69</b><span>tests green in <code>./mvnw -B verify</code> (12 test classes)</span></div>
-    <div class="kpi"><b>87.4%</b><span>instruction coverage across the logic classes (the JavaFX layer is excluded)</span></div>
+    <div class="kpi"><b>82</b><span>tests green in <code>./mvnw -B verify</code> (13 test classes)</span></div>
+    <div class="kpi"><b>85.7%</b><span>instruction coverage across the logic classes (the JavaFX layer is excluded)</span></div>
     <div class="kpi"><b>24</b><span>classes in one JPMS module — no database, CSV + <code>.bak</code> backups</span></div>
-    <div class="kpi"><b>47</b><span>commits from <code>Init</code> to archive</span></div>
+    <div class="kpi"><b>58</b><span>commits from <code>Init</code> to archive</span></div>
   </div>
 
   <h3>The Noten tab — where the math lives</h3>
@@ -655,7 +655,7 @@ if (noetig &lt; 1.0 || noetig &gt; 5.0)
   <p>The tab logic was extracted from the former <b>674-line HomeController</b> into a coordinator plus one controller per tab (674 → 189 lines), while the single FXML stayed untouched on purpose — no <code>fx:include</code> rewrite on a UI that deliberately has no FXML-loading test coverage. Persistence is equally deliberate: two semicolon-separated CSVs with custom escaping (<code>\;</code> / <code>\n</code>), a <code>.bak</code> copy before every overwrite, and a legacy four-column reader that still loads module files written before the split. The simulator math is pinned by its own test class, and the website widget is pinned against the same implementation.</p>
 
   <h3>Team — a seven-person EInf group project</h3>
-  <p>This started as a group assignment in <em>Einführung in die Informatik</em>: seven students, 48 commits. The project skeleton, the first deadline logic and parts of the data layer came from teammates — the code on <code>main</code> is the sum of everyone's work, not a solo build. My share (31 of the 48 commits): the domain model (<code>Modul</code>, <code>Semester</code>, the <code>Leistung</code> hierarchy), <code>SpeicherManager</code>, the GUI wiring and the per-tab controller split, the Notensimulator, the ECTS chart and semester dashboard, the ICS export — plus the JavaFX 21 migration, the CI workflow and the test build-out.</p>
+  <p>This started as a group assignment in <em>Einführung in die Informatik</em>: seven students, 58 commits. The project skeleton, the first deadline logic and parts of the data layer came from teammates — the code on <code>main</code> is the sum of everyone's work, not a solo build. My share (39 of the 58 commits): the domain model (<code>Modul</code>, <code>Semester</code>, the <code>Leistung</code> hierarchy), <code>SpeicherManager</code>, the GUI wiring and the per-tab controller split, the Notensimulator, the ECTS chart and semester dashboard, the ICS export — plus the JavaFX 21 migration, the CI workflow and the test build-out.</p>
 
   <p class="muted">Source: <a href="https://github.com/daniilperkin-uni/oop_student_organizer">github.com/daniilperkin-uni/oop_student_organizer</a> (public).</p>
 </section>
