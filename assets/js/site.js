@@ -128,4 +128,19 @@
     r.addEventListener('input', set);
     set();
   });
+
+  // The mobile nav is a horizontal scroller with its scrollbar hidden, so a long
+  // row of links ends in a hard cut mid-word and the rest look like they do not
+  // exist. Fade whichever edge still has content behind it, and only that edge.
+  var nl = document.querySelector('.navlinks');
+  if (nl) {
+    var navCue = function () {
+      var more = nl.scrollWidth - nl.clientWidth;
+      nl.classList.toggle('has-more-left', nl.scrollLeft > 2);
+      nl.classList.toggle('has-more-right', more > 2 && nl.scrollLeft < more - 2);
+    };
+    navCue();
+    nl.addEventListener('scroll', navCue, { passive: true });
+    window.addEventListener('resize', navCue);
+  }
 })();
