@@ -12,7 +12,9 @@ const mod = { exports: {} };
 new Function('module', 'exports', simCode)(mod, mod.exports);
 const OopSim = mod.exports;
 
-const cases = fs.readFileSync(path.join(here, 'simulator-cases.csv'), 'utf8').trim().split('\n');
+/* Split on /\r?\n/: a Windows checkout (core.autocrlf=true) hands us CRLF, and a
+   trailing \r would turn the "NaN" marker in the last column into "NaN\r". */
+const cases = fs.readFileSync(path.join(here, 'simulator-cases.csv'), 'utf8').trim().split(/\r?\n/);
 const SIMW = [1.0, 2.0, 2.5, 3.0];
 const NEEDZ = [1.0, 1.5, 2.0, 2.5, 3.0];
 
