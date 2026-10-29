@@ -52,3 +52,21 @@ test('speed is clamped to the maximum and zero elapsed is a no-op', () => {
   assert.equal(speed(0, 90, 1000, 1100, 360), 360);
   assert.equal(speed(0, 90, 1000, 1000, 360), 0);
 });
+
+test('a negative elapsed time is not a fling', () => {
+  /* Java treats any non-positive span as no drag; the port only guarded === 0. */
+  assert.equal(speed(0, 90, 1000, 500, 360), 0);
+});
+
+test('a drag step that touches the vertical diameter is not dropped', () => {
+  /* prev sits exactly on the vertical line through the centre (dx === 0), curr is
+     due right of it: a quarter turn. The slope form divided by the zero dx and
+     returned 0, so the wheel ignored the step. */
+  const delta = SW.dragDeltaDeg({ x: 100, y: 50 }, { x: 150, y: 100 }, { x: 100, y: 100 });
+  assert.ok(Math.abs(delta - 90) < 1e-9, 'expected 90, got ' + delta);
+});
+
+test('a drag delta across the 180 degree boundary stays short', () => {
+  const delta = SW.dragDeltaDeg({ x: -10, y: 1 }, { x: -10, y: -1 }, { x: 0, y: 0 });
+  assert.ok(Math.abs(delta) < 180, 'expected a short arc, got ' + delta);
+});

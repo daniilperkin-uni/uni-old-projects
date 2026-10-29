@@ -10,7 +10,7 @@
   <p class="caption"><b>Live</b> &mdash; drag the wheel and release to flick it, click it mid-spin to stop it dead, press <b>Space</b>/<b>Enter</b> (or the button) for a random spin at 180&ndash;360&nbsp;&deg;/s. The animation advances in the app's own 10&nbsp;ms steps of <code>SpinStep.compute</code>, and the selection under the pointer is the same <code>floor(n + angle % 360 / 24&deg;) % n</code>. Spin speed and direction, deceleration and landing are validated 1:1 against the Java classes &mdash; 8,892 generated test vectors, zero mismatches.</p>
 
   <div class="kpis">
-    <div class="kpi"><b>120</b><span>tests green in <code>verify</code> — JUnit 5 + AssertJ, 0 failures</span></div>
+    <div class="kpi"><b>135</b><span>tests green in <code>verify</code> — JUnit 5 + AssertJ, 0 failures</span></div>
     <div class="kpi"><b>97–100%</b><span>instruction coverage of the pure layers (WheelMath · SpinStep · TickMath · WheelModel)</span></div>
     <div class="kpi"><b>0</b><span>mismatches against the Java classes across 8,892 ported-math test vectors</span></div>
     <div class="kpi"><b>10 ms</b><span>per physics step — the app's 100&nbsp;Hz timer, replayed exactly</span></div>
@@ -82,6 +82,7 @@ public static SpinStep compute(double currentSpeed, int direction,
 
   <h3>Engineered, not just built</h3>
   <ul>
+    <li><b>A flick across 0°/360° no longer launches backwards</b> — the release velocity was the raw difference of two normalized angles, so a forward drag from 350° to 10° measured as −340° and clamped to full speed in reverse; it now uses the shorter arc (<code>WheelMathTest</code>, and the port's own <code>pe1-wheel-fling</code> test).</li>
     <li><b>The wheel no longer rotates twice on resize</b> — the base image used to bake in the rotation <i>and</i> have it applied again at paint, desyncing pointer and selection; the renderer is now rotation-independent (<code>WheelPaintTest</code>).</li>
     <li><b>The pointer survives repaints</b> — the tick polygon's scaling used to compound on every paint; geometry now returns a fresh, idempotent polygon (<code>TickMathTest</code>).</li>
     <li><b>The sidebar keeps its width</b> — selecting a longer item name used to re-lay-out the frame and make the wheel jump (<code>MainWheelInfoPanelTest</code>).</li>
@@ -89,5 +90,5 @@ public static SpinStep compute(double currentSpeed, int direction,
     <li><b>No <code>Thread.sleep</code>, anywhere</b> — the spin rides a <code>javax.swing.Timer</code> on the EDT, a detached wheel stops its timer, and the tests synchronize on <code>CountDownLatch</code> callbacks instead of sleeping (<code>SelectionWheelIntegrationTest</code>).</li>
   </ul>
 
-  <p class="muted">Coverage: pure layers 97–100&nbsp;%, overall 62.6&nbsp;% — the Swing views carry the remaining gap and there is no threshold gate yet. CI: every push runs <code>./mvnw -B verify</code> under xvfb on JDK 21, the Swing tests need a display. Source: <a href="https://github.com/daniilperkin-uni/pe1_selection_wheel">github.com/daniilperkin-uni/pe1_selection_wheel</a> (public).</p>
+  <p class="muted">Coverage: pure layers 97–100&nbsp;%, overall 73.9&nbsp;% instruction (JaCoCo, all classes) — the Swing views carry the remaining gap and there is no threshold gate yet. CI: every push and every <code>v*</code> tag runs <code>./mvnw -B verify</code> under xvfb on JDK 21, the Swing tests need a display. Source: <a href="https://github.com/daniilperkin-uni/pe1_selection_wheel">github.com/daniilperkin-uni/pe1_selection_wheel</a> (public, <a href="https://github.com/daniilperkin-uni/pe1_selection_wheel/releases/latest">v1.0.0 release with a runnable jar</a>).</p>
 </section>

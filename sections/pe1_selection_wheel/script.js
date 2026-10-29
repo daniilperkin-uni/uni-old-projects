@@ -40,7 +40,7 @@
 
   function computeInitialSpeedDegPerSec(angleStartDeg, angleEndDeg, timeStartMs, timeEndMs, maxSpeedDegPerSec) {
     var elapsed = timeEndMs - timeStartMs;
-    if (elapsed === 0) { return 0; }
+    if (elapsed <= 0) { return 0; }                    /* Java: non-positive span -> no drag */
     var raw = 1000 * shortestAngleDeltaDeg(angleStartDeg, angleEndDeg) / elapsed;
     if (!isFinite(raw)) { return 0; }                  /* Java: NaN || Infinite -> 0 */
     var sign = Math.sign(raw);
@@ -58,10 +58,12 @@
   }
 
   function dragDeltaDeg(prev, curr, center) {          /* WheelMath.dragDeltaDeg */
-    var dxPrev = prev.x - center.x, dxCurr = curr.x - center.x;
-    if (dxPrev === 0 || dxCurr === 0) { return 0; }
-    var k1 = (prev.y - center.y) / dxPrev, k2 = (curr.y - center.y) / dxCurr;
-    var delta = Math.atan((k2 - k1) / (1 + k2 * k1)) / RAD;
+    /* Polar angles, not slope quotients: the slope form divided by a zero dx and
+       returned 0 whenever either point sat exactly on the vertical diameter,
+       dropping a drag step. */
+    var prevAngle = Math.atan2(prev.y - center.y, prev.x - center.x) / RAD;
+    var currAngle = Math.atan2(curr.y - center.y, curr.x - center.x) / RAD;
+    var delta = shortestAngleDeltaDeg(prevAngle, currAngle);
     return isNaN(delta) ? 0 : delta;
   }
 
