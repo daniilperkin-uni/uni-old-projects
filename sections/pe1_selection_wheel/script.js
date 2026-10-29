@@ -41,10 +41,20 @@
   function computeInitialSpeedDegPerSec(angleStartDeg, angleEndDeg, timeStartMs, timeEndMs, maxSpeedDegPerSec) {
     var elapsed = timeEndMs - timeStartMs;
     if (elapsed === 0) { return 0; }
-    var raw = 1000 * (angleEndDeg - angleStartDeg) / elapsed;
+    var raw = 1000 * shortestAngleDeltaDeg(angleStartDeg, angleEndDeg) / elapsed;
     if (!isFinite(raw)) { return 0; }                  /* Java: NaN || Infinite -> 0 */
     var sign = Math.sign(raw);
     return sign * clampSpeed(Math.abs(raw), maxSpeedDegPerSec);
+  }
+
+  /* The model normalizes every angle to (-360, 360), so a plain subtraction turns a
+     forward drag across the 0/360 boundary (350 -> 10, i.e. +20) into -340 and flings
+     the wheel the other way at full speed. Measure along the shorter arc instead. */
+  function shortestAngleDeltaDeg(startDeg, endDeg) {   /* WheelMath.shortestAngleDeltaDeg */
+    var delta = (endDeg - startDeg) % 360;
+    if (delta > 180) { delta -= 360; }
+    else if (delta < -180) { delta += 360; }
+    return delta;
   }
 
   function dragDeltaDeg(prev, curr, center) {          /* WheelMath.dragDeltaDeg */
