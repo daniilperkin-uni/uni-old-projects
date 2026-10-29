@@ -151,7 +151,10 @@
   kpis.forEach(function (b) {
     var txt = b.textContent;
     if (b.hasAttribute('data-static') || txt.indexOf('\u2192') !== -1) { return; }
-    var m = /^(\d+)([^0-9.,\u2192\/-]|$)/.exec(txt);
+    /* Only a single leading number with a non-numeric tail is a counter. Anything
+       with a second number in the tail is a compound value — "3840×2160",
+       "32 · 16 · 5", "97–100%", "8/8", "2,409" — and must not count up from zero. */
+    var m = /^(\d+)(\D*)$/.exec(txt);
     if (!m) { return; }
     var n = parseInt(m[1], 10);
     if (!(n > 1) || n > 99999) { return; }
