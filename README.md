@@ -8,6 +8,13 @@ Live at **https://daniilperkin-uni.github.io/uni-old-projects/** (GitHub Pages, 
     node build.mjs      # stamps sections/<id>/section.html into index.html
     node serve.mjs      # serves this folder on http://localhost:8123
 
+## Tests
+
+    node sections/oop_student_organizer/tools/validate-simulator.mjs   # JS port vs. the Java classes
+    node --test tests/*.test.mjs                                       # section regression tests
+
+CI runs both before it deploys.
+
 ## Layout
 
 - `shell/template.html` — page shell with `@NAV@` / `@SECTIONS@` / `@SECTION_STYLES@` / `@SECTION_SCRIPTS@` slots

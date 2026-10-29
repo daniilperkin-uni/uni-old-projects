@@ -23,6 +23,10 @@ jobs:
         run: |
           node build.mjs
           git diff --exit-code -- index.html
+      - name: Run the section tests
+        run: |
+          node sections/oop_student_organizer/tools/validate-simulator.mjs
+          node --test tests/*.test.mjs
       - name: Stage the site (index + assets + sections, as served locally)
         run: |
           mkdir _site
