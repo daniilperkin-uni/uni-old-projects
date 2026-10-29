@@ -58,7 +58,8 @@ const OopSim = (() => {
   // Site-only helper — not part of the Java port. benoetigteNoteFuerZiel() returns
   // null for three different reasons, and the widget has to tell them apart:
   //   'needed'      -> note is the grade the open modules still need
-  //   'achieved'    -> the fixed average already meets the target (nothing left to do)
+  //   'achieved'    -> nothing can push the average past the target: either no open
+  //                    graded ECTS are left, or even a 5.0 in every one of them keeps it
   //   'no-headroom' -> no open graded ECTS left, and the fixed average misses it
   //   'impossible'  -> open ECTS remain, but even 1.0 in all of them would miss it
   function zielStatus(module, zielnote) {
@@ -82,7 +83,7 @@ const OopSim = (() => {
     }
     const noetig = (zielnote * (fixEcts + offenEcts) - fixNoteEcts) / offenEcts;
     if (noetig < 1.0) return { status: 'impossible', note: null };
-    if (fixSchnitt !== null && fixSchnitt <= zielnote) return { status: 'achieved', note: noetig };
+    if (noetig > 5.0) return { status: 'achieved', note: null };
     return { status: 'needed', note: noetig };
   }
 
